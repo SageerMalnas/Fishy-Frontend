@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   btnCam: {
     marginTop: 20,
-    backgroundColor: "green",
+    backgroundColor: "blue",
     padding: 10,
     borderRadius: 6,
   },
