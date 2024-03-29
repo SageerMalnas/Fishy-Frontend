@@ -28,6 +28,7 @@ import HomeScreen from "./src/HomeScreen";
 import NotificationScreen from "./src/NotificationScreen.js";
 import LoginScreen from "./src/LoginScreen";
 import SignupScreen from "./src/SignInScreen";
+import FishEcom from "./src/FishEcom/FishEcomScreen.js";
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
         <Drawer.Screen name="OpenCamera" component={OpenCamera} />
         <Drawer.Screen name="Login" component={LoginScreen} />
         <Drawer.Screen name="Signup" component={SignupScreen} />
+        <Drawer.Screen name="Fish Ecommerce" component={FishEcom}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );
