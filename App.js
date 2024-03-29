@@ -33,7 +33,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="FISHY" component={HomeScreen} />
         <Drawer.Screen name="Notifications" component={NotificationScreen} />
         <Drawer.Screen name="OpenCamera" component={OpenCamera} />
       </Drawer.Navigator>
