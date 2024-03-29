@@ -20,13 +20,14 @@
 // });
 
 //Use Above code...and comment this code aswell OpenCamera code to avoid any errors
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import OpenCamera from './src/OpenCamera.js'
-import HomeScreen from './src/HomeScreen';
-import NotificationScreen from './src/NotificationScreen.js';
-
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import OpenCamera from "./src/OpenCamera.js";
+import HomeScreen from "./src/HomeScreen";
+import NotificationScreen from "./src/NotificationScreen.js";
+import LoginScreen from "./src/LoginScreen";
+import SignupScreen from "./src/SignInScreen";
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -36,11 +37,19 @@ export default function App() {
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Notifications" component={NotificationScreen} />
         <Drawer.Screen name="OpenCamera" component={OpenCamera} />
+        <Drawer.Screen name="Login" component={LoginScreen} />
+        <Drawer.Screen name="Signup" component={SignupScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
 }
 
+// import * as React from 'react';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// import Signup from './src/SignInScreen';
+// import Login from './src/LoginScreen';
 
 // const Stack = createNativeStackNavigator();
 
@@ -48,8 +57,9 @@ export default function App() {
 //   return (
 //     <NavigationContainer>
 //       <Stack.Navigator screenOptions={{ headerShown: false }}>
-//         {/* <Stack.Screen name="OpenCamera" component={OpenCamera} /> */}
-//         <Stack.Screen name="Screen" component={Screen} />
+//         <Stack.Screen name="Signup" component={Signup} />
+//         <Stack.Screen name="Login" component={Login} />
+
 //       </Stack.Navigator>
 //     </NavigationContainer>
 //   );
