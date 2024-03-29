@@ -19,25 +19,40 @@
 //   },
 // });
 
-
-
 //Use Above code...and comment this code aswell OpenCamera code to avoid any errors
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import OpenCamera from './src/OpenCamera.js'
+import HomeScreen from './src/HomeScreen';
+import NotificationScreen from './src/NotificationScreen.js';
 
-import OpenCamera from './src/OpenCamera';
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-function App() {
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="OpenCamera" component={OpenCamera} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Notifications" component={NotificationScreen} />
+        <Drawer.Screen name="OpenCamera" component={OpenCamera} />
+      </Drawer.Navigator>
     </NavigationContainer>
-    
   );
 }
 
-export default App;
+
+// const Stack = createNativeStackNavigator();
+
+// function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator screenOptions={{ headerShown: false }}>
+//         {/* <Stack.Screen name="OpenCamera" component={OpenCamera} /> */}
+//         <Stack.Screen name="Screen" component={Screen} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// export default App;
