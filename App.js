@@ -60,8 +60,8 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="FISHY" component={HomeScreen} />
+      <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <CustomDrawerContent {...props} />}>
+        <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Notifications" component={NotificationScreen} />
         <Drawer.Screen name="OpenCamera" component={OpenCamera} />
         <Drawer.Screen name="Login" component={LoginScreen} />
