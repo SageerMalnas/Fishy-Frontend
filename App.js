@@ -46,7 +46,12 @@
 //     </Drawer.Navigator>
 //   );
 // }
+
+
 import * as React from "react";
+
+
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -58,17 +63,18 @@ import CustomDrawerContent from "./src/CustomDrawerContent";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
+const DrawerNavigator = () => (
+  <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
+    <Drawer.Screen name="Home" component={HomeScreen} />
+    {/* Other drawer screens */}
+  </Drawer.Navigator>
+);
+
 const AuthStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="Login" component={LoginScreen} />
     <Stack.Screen name="Signup" component={SignupScreen} />
   </Stack.Navigator>
-);
-
-const DrawerNavigator = () => (
-  <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
-    <Drawer.Screen name="HomeScreen" component={HomeScreen} />
-  </Drawer.Navigator>
 );
 
 export default function App() {
@@ -79,11 +85,13 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? (
-        <DrawerNavigator />
-      ) : (
-        <AuthStack />
-      )}
+      <Stack.Navigator>
+        {isLoggedIn ? (
+          <Stack.Screen name="Drawer" component={DrawerNavigator} options={{ headerShown: false }} />
+        ) : (
+          <Stack.Screen name="Auth" component={AuthStack} options={{ headerShown: false }} />
+        )}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

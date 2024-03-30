@@ -101,7 +101,7 @@ const Login = ({ navigation }) => {
 				secureTextEntry={true}
 			/>
 
-			<Button onPress={() => loginUser(email, password)} style={styles.button} mode="contained">
+			<Button  onPress={() => navigation.navigate("Home")} style={styles.button} mode="contained">
 				Log In
 			</Button>
 
