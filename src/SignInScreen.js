@@ -10,7 +10,7 @@ const SignInScreen = ({ navigation }) => {
   const handleSignup = () => {
     // Handle the sign-up logic here
     // For simplicity, just navigate back to the login screen
-    navigation.navigate('Login');
+    navigation.navigate('Home');
   };
 
   return (
