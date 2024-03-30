@@ -35,7 +35,8 @@ const SignInScreen = ({ navigation }) => {
         onChangeText={setPassword}
         style={styles.input}
       />
-      <Button title="Sign Up" onPress={handleSignup} />
+ <Button title="Sign Up" onPress={handleSignup} style={{ backgroundColor: '#7affec' }} />
+
     </View>
   );
 };
@@ -48,11 +49,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#1d3557',
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
     textAlign: 'center',
+    color: '#ffffff',
+    fontFamily: ''
   },
   input: {
     marginBottom: 12,

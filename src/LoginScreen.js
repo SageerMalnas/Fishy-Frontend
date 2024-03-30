@@ -123,7 +123,8 @@ const styles = StyleSheet.create({
 		margin: 10
 	},
 	button: {
-		margin: 10
+		margin: 10,
+		color: "#1d3557"
 	},
 	text: {
 		margin: 10,
