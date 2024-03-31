@@ -74,12 +74,13 @@ const Login = ({ navigation }) => {
 	const [value, setValue] = React.useState("Student");
 
 	loginUser = async (email, password) => {
-		try {
-			//await firebase.auth().signInWithEmailAndPassword(email, password);
-			console.log(email);
-		} catch (error) {
-			alert(error.message);
-		}
+		// try {
+		// 	//await firebase.auth().signInWithEmailAndPassword(email, password);
+		// 	console.log(email);
+		// } catch (error) {
+		// 	alert(error.message);
+		// }
+		navigation.navigate("Home");
 	};
 
 	return (
@@ -101,7 +102,7 @@ const Login = ({ navigation }) => {
 				secureTextEntry={true}
 			/>
 
-			<Button onPress={() => loginUser(email, password)} style={styles.button} mode="contained">
+			<Button  onPress={() => navigation.navigate("Home")} style={styles.button} mode="contained">
 				Log In
 			</Button>
 

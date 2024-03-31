@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View, Image, Text, Button } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import { COLORS } from './consts/colors'; // Import the COLORS object from your colors file
+import { COLORS } from '../consts/colors'; // Import the COLORS object from your colors file
 
 const OpenCamera = ({ navigation }) => {
   const [imgUrl, setImgUrl] = useState(
