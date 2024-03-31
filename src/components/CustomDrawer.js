@@ -37,14 +37,7 @@ const CustomDrawer = props => {
             John Doe
           </Text>
           <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{
-                color: '#fff',
-                fontFamily: 'Roboto-Regular',
-                marginRight: 5,
-              }}>
-              280 Coins
-            </Text>
+          
             <FontAwesome5 name="coins" size={14} color="#fff" />
           </View>
         </ImageBackground>
