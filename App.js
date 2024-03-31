@@ -48,50 +48,53 @@
 // }
 
 
+
 import * as React from "react";
-
-
-
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createStackNavigator } from '@react-navigation/stack';
+
 import HomeScreen from "./src/HomeScreen";
 import LoginScreen from "./src/LoginScreen";
 import SignupScreen from "./src/SignInScreen";
+import OpenCamera from "./src/OpenCamera";
+import FishEcom from "./src/FishEcom/FishEcomScreen";
+import Shop from './src/Shop';
 import CustomDrawerContent from "./src/CustomDrawerContent";
 
-const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
-const DrawerNavigator = () => (
-  <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
-    <Drawer.Screen name="Home" component={HomeScreen} />
-    {/* Other drawer screens */}
-  </Drawer.Navigator>
-);
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <CustomDrawerContent {...props} />}>
+      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="OpenCamera" component={OpenCamera} />
+      <Drawer.Screen name="Shop" component={Shop} />
+      <Drawer.Screen name="Fish Ecommerce" component={FishEcom}/>
+    </Drawer.Navigator>
+  );
+}
 
-const AuthStack = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="Signup" component={SignupScreen} />
-  </Stack.Navigator>
-);
+function AuthNavigator() {
+  return (
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
+  const [isUserLoggedIn, setIsUserLoggedIn] = React.useState(true); 
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {isLoggedIn ? (
-          <Stack.Screen name="Drawer" component={DrawerNavigator} options={{ headerShown: false }} />
-        ) : (
-          <Stack.Screen name="Auth" component={AuthStack} options={{ headerShown: false }} />
-        )}
-      </Stack.Navigator>
+      {isUserLoggedIn ? (
+        <DrawerNavigator />
+      ) : (
+        <AuthNavigator />
+      )}
     </NavigationContainer>
   );
 }
