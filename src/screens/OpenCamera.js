@@ -1,12 +1,24 @@
 import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, View, Image, Text, Button } from "react-native";
+import {   View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  ImageBackground,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { COLORS } from '../consts/colors'; // Import the COLORS object from your colors file
+import { FontAwesome5 } from '@expo/vector-icons'; // Import FontAwesome5 from expo vector icons
 
 const OpenCamera = ({ navigation }) => {
   const [imgUrl, setImgUrl] = useState(
     "https://pixabay.com/photos/road-forest-fall-autumn-season-1072823/"
   );
+  const [imageInfo, setImageInfo] = useState({
+    species: "Salmon",
+    disease: "None"
+  });
 
   const openCameraLib = async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -26,42 +38,87 @@ const OpenCamera = ({ navigation }) => {
     setImgUrl(result.assets[0].uri);
   };
 
+  const removeImage = () => {
+    setImgUrl(null);
+  };
+
   return (
-    <View style={styles.container}>
-      <View>
-        {imgUrl && (
-          <Image
-            resizeMode="contain"
-            style={styles.img}
-            source={{ uri: imgUrl }}
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", paddingTop: 40 }}>
+    <ScrollView >
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: 20,
+          
+        }}
+      >
+        <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" }}>
+          Hello Rutuja
+        </Text>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <ImageBackground
+            source={require("../assets/images/user-profile.jpg")}
+            style={{ width: 45, height: 45 }}
+            imageStyle={{ borderRadius: 25 }}
           />
-        )}
-        <TouchableOpacity style={[styles.btnCam, {     backgroundColor: '#7affec' }]} onPress={openCameraLib}>
-          <Text style={[styles.textBtn, { color: COLORS.white }]}>Open Camera</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.btnCam, {     backgroundColor: '#7affec'  }]} onPress={openLib}>
-          <Text style={[styles.textBtn, { color: COLORS.white }]}>Open Gallery</Text>
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Button onPress={() => navigation.goBack()} title="Go back home" />
+
+    <View style={styles.container}>
+      <View style={styles.innerContainer}>
+        <View style={styles.imageContainer}>
+          {imgUrl && (
+            <Image
+              resizeMode="contain"
+              style={styles.img}
+              source={{ uri: imgUrl }}
+            />
+          )}
+          {imgUrl && (
+            <TouchableOpacity style={styles.removeButton} onPress={removeImage}>
+              <FontAwesome5 name="times-circle" size={24} color={COLORS.red} />
+            </TouchableOpacity>
+          )}
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={[styles.btnCam, { backgroundColor: '#7affec' }]} onPress={openCameraLib}>
+            <FontAwesome5 name="camera" size={24} color={COLORS.white} />
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.btnCam, { backgroundColor: '#7affec' }]} onPress={openLib}>
+            <FontAwesome5 name="images" size={24} color={COLORS.white} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.infoText}>Species: {imageInfo.species}</Text>
+        <Text style={styles.infoText}>Disease: {imageInfo.disease}</Text>
       </View>
     </View>
+    </ScrollView>
+    </SafeAreaView>
   );
 };
-
-export default OpenCamera;
-
-
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1d3557',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 10, // Adjust padding from the top
+    height: 800,
+  },
+  innerContainer: {
+    backgroundColor: '#fff',
     padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginHorizontal: 20, // Adjust margin horizontally for center alignment
+    marginTop: 20,
+  height: 400
+  },
+  imageContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    position: 'relative',
   },
   img: {
     width: 200,
@@ -69,32 +126,39 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 6,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#d9dde3',
-    marginBottom: 10,
-    textAlign: 'center',
+  removeButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: 'transparent',
+    zIndex: 1, // Ensure that the cross button appears above the image
   },
-  subtitle: {
-    fontSize: 18,
-    color: '#d9dde3',
-    marginBottom: 30,
-    textAlign: 'center',
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 20, // Add margin from the top for button container
   },
   btnCam: {
-    backgroundColor: '#7affec',
     padding: 10,
     margin: 10,
     borderRadius: 8,
   },
-  textBtn: {
-    color: 'black',
-    fontSize: 16,
-    textAlign: 'center',
-    fontWeight: 'bold',
+  infoContainer: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  infoText: {
+    fontSize: 18,
+    color: COLORS.black,
   },
 });
+
+
+export default OpenCamera;
+
+
+
+
 // import React, { useState } from "react";
 // import { StyleSheet, TouchableOpacity, View, Image, Text, Button } from "react-native";
 // import * as ImagePicker from "expo-image-picker";
