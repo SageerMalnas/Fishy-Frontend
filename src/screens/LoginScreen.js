@@ -148,8 +148,8 @@ const LoginScreen = ({ navigation: { navigate } }) => {
     
   };
   return (
-    <SafeAreaView>
-      <View style={{ padding: 40 }}>
+    <SafeAreaView style={{ flex: 1 , backgroundColor: "#f0f8ff"}}>
+      <View style={{ padding: 40  }}>
         <View style={{ alignItems: 'center' }}>
           <Image
             style={{ height: 100 , marginTop: 10}}

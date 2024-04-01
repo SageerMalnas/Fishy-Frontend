@@ -75,10 +75,10 @@ const {height} = Dimensions.get('window');
 
 const Welcome = ({navigation: {navigate}}) => {
   return (
-    <SafeAreaView>
-      <View>
+    <SafeAreaView style={{ flex: 1 , backgroundColor: "#f0f8ff"}}>
+      <View >
         <ImageBackground
-          style={{height: height / 3.5, marginTop:40}}
+          style={{height: height / 4.5, marginTop:80}}
           resizeMode="contain"
           source={require('../../assets/Logo.png')} />
         <View style={{paddingHorizontal:40, paddingTop:40 }}>
@@ -131,6 +131,7 @@ const Welcome = ({navigation: {navigate}}) => {
 
       </View>   
     </SafeAreaView>
+   
   );
 };
 

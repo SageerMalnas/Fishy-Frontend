@@ -204,7 +204,7 @@ const Register = ({ navigation: { navigate } }) => {
   // eslint-disable-next-line no-unused-vars
   const [focused, setFocused] = useState(false);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 , backgroundColor: "#f0f8ff"}}>
       <View style={{ padding: 40 }}>
         <View style={{ alignItems: 'center' }}>
 
