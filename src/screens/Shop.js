@@ -288,30 +288,23 @@ import { FontAwesome5 } from "@expo/vector-icons"; // Import FontAwesome5 for ca
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
 // Custom component for rendering star ratings
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const StarRating = ({ rating }) => {
+  
+
+const StarRating  = ({ rating }) => {
   const stars = [];
-  const maxRating = 5; // Maximum rating
-  const integerPart = Math.floor(rating);
-  const decimalPart = rating - integerPart;
-  for (let i = 0; i < integerPart; i++) {
-    stars.push(<FontAwesome5 key={i} name="star" size={14} color="yellow" />);
-  }
-  if (decimalPart > 0) {
+  for (let i = 1; i <= 5; i++) {
     stars.push(
-      <FontAwesome5
-        key={integerPart}
-        name="star-half-alt"
-        size={14}
-        color="yellow"
+      <MaterialCommunityIcons
+        key={i}
+        name={i <= rating ? 'star' : 'star-outline'}
+        size={24}
+        color="#FFD700"
       />
     );
   }
-  for (let i = integerPart + 1; i < maxRating; i++) {
-    stars.push(<FontAwesome5 key={i} name="star" size={14} color="gray" />);
-  }
-
-  return <View style={{ flexDirection: "row" }}>{stars}</View>;
+  return <View style={styles.ratingContainer}>{stars}</View>;
 };
 
 const Shop = ({ navigation }) => {
@@ -477,7 +470,10 @@ const Shop = ({ navigation }) => {
                     {aquarium.name}
                   </Text>
                 </View>
-                <StarRating rating={aquarium.rating} />
+                <View style={styles.ratingContainer}>
+          <StarRating rating={aquarium.rating} />
+          <Text style={styles.ratingText}>{aquarium.rating.toFixed(1)}</Text>
+        </View>
 
                 <Text style={styles.shopInfo}>{aquarium.address}</Text>
                 <Text style={styles.shopInfo}>
@@ -563,6 +559,15 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     flexDirection: "row",
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingText: {
+    marginLeft: 5,
+    fontSize: 16,
+    color: '#666',
   },
 });
 
