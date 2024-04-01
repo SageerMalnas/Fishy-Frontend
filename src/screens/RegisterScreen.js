@@ -199,8 +199,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import AppTextInput from './AppTextInput'
 // eslint-disable-next-line no-unused-vars
-const Register = ({ navigation: { navigate } }) => {
 
+const Register = ({ navigation: { navigate } }) => {
+  const handleSignIn = () => {
+    console.log('Signing in...');
+    navigate("AppStack");
+    
+  };
   // eslint-disable-next-line no-unused-vars
   const [focused, setFocused] = useState(false);
   return (
@@ -229,7 +234,8 @@ const Register = ({ navigation: { navigate } }) => {
           shadowColor: '#1f41bb',
           shadowOffset: { width: 0, height: 10 },
           shadowOpacity: 0.3,
-          shadowRadius: 10}}>
+          shadowRadius: 10}}
+          onPress={handleSignIn}>
 
           <Text style={{
             color: '#fff',
