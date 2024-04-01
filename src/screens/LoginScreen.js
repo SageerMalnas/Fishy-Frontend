@@ -140,9 +140,12 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AppTextInput from './AppTextInput'
-const LoginScreen = ({ navigation: { navigate } }) => {
+const LoginScreen = ({ navigation }) => {
   const [focused, setFocused] = useState(false);
-  
+  const handleSignIn = () => {
+    console.log('Signing in...');
+    navigation.navigate('AppStack');
+  };
   return (
     <SafeAreaView>
       <View style={{ padding: 10 }}>
@@ -182,7 +185,8 @@ const LoginScreen = ({ navigation: { navigate } }) => {
           shadowOffset: { width: 0, height: 10 },
           shadowOpacity: 0.3,
           shadowRadius: 10
-        }}>
+        }}
+        onPress={handleSignIn} >
 
           <Text style={{
             color: '#fff',
