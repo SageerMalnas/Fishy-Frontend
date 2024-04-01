@@ -273,24 +273,24 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const windowWidth = Dimensions.get('window').width;
 
 const FishExperts = [
-  { 
-    id: 1, 
-    name: 'John Doe', 
-    expertise: 'Marine Biologist', 
-    image: require('../../src/assets/Expert/expert1.jpg'), 
-    phone: '123-456-7890', 
-    rating: 4.5, 
+  {
+    id: 1,
+    name: 'John Doe',
+    expertise: 'Marine Biologist',
+    image: require('../../src/assets/Expert/expert1.jpg'),
+    phone: '123-456-7890',
+    rating: 4.5,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'New York, USA',
     experience: '8 years'
   },
-  { 
-    id: 2, 
-    name: 'Jane Smith', 
-    expertise: 'Aquaculture Specialist', 
-    image: require('../../src/assets/Expert/expert1.jpg'), 
-    phone: '987-654-3210', 
-    rating: 4.8, 
+  {
+    id: 2,
+    name: 'Jane Smith',
+    expertise: 'Aquaculture Specialist',
+    image: require('../../src/assets/Expert/expert1.jpg'),
+    phone: '987-654-3210',
+    rating: 4.8,
     details: 'Sed eget metus vehicula, convallis metus ut, varius metus. Fusce id fringilla est. Nulla sollicitudin sapien a risus fermentum, a pulvinar ipsum feugiat. Proin nec dapibus lectus.',
     location: 'Los Angeles, USA',
     experience: '10 years'
@@ -384,4 +384,77 @@ const styles = StyleSheet.create({
   scrollView: {
     flexGrow: 1,
     justifyContent: 'center',
-    alignItems:
+    alignItems: 'center', // Add valid value here
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 20,
+    width: windowWidth - 40,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  image: {
+    width: '100%',
+    height: 250,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  name: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: '#333',
+  },
+  expertise: {
+    fontSize: 16,
+    color: '#666',
+    marginBottom: 5,
+  },
+  location: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 5,
+  },
+  experience: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 10,
+  },
+  details: {
+    fontSize: 14,
+    color: '#333',
+    marginBottom: 10,
+  },
+  readMore: {
+    color: 'blue',
+    textDecorationLine: 'underline',
+    marginBottom: 10,
+  },
+  readLess: {
+    color: 'blue',
+    textDecorationLine: 'underline',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingText: {
+    marginLeft: 5,
+    fontSize: 16,
+    color: '#666',
+  },
+  phone: {
+    fontSize: 16,
+    color: '#666',
+  },
+});
