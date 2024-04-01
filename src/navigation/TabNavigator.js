@@ -1,12 +1,14 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { TouchableOpacity } from 'react-native';
 
 import HomeScreen from '../screens/HomeScreen';
 import Shop from '../screens/Shop';
 import OpenCamera from '../screens/OpenCamera';
 import FishEcom from '../screens/FishEcom/FishEcomScreen';
+import CartScreen from '../screens/CartScreen'; // Import CartScreen component
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -20,12 +22,12 @@ const HomeStack = () => {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="OpenCamera"
         component={OpenCamera}
-        options={({route}) => ({
+        options={({ route }) => ({
           title: route.params?.title,
         })}
       />
@@ -39,19 +41,19 @@ const TabNavigator = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: {backgroundColor: '#1d3557'},
+        tabBarStyle: { backgroundColor: '#1d3557' },
         tabBarInactiveTintColor: '#fff',
         tabBarActiveTintColor: 'yellow',
       }}>
       <Tab.Screen
         name="Home2"
         component={HomeStack}
-        options={({route}) => ({
+        options={({ route }) => ({
           tabBarStyle: {
             display: getTabBarVisibility(route),
             backgroundColor: '#1d3557',
           },
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" color={color} size={size} />
           ),
         })}
@@ -61,8 +63,8 @@ const TabNavigator = () => {
         component={Shop}
         options={{
           tabBarBadge: 3,
-          tabBarBadgeStyle: {backgroundColor: 'yellow'},
-          tabBarIcon: ({color, size}) => (
+          tabBarBadgeStyle: { backgroundColor: 'yellow' },
+          tabBarIcon: ({ color, size }) => (
             <Feather name="shopping-bag" color={color} size={size} />
           ),
         }}
@@ -71,30 +73,32 @@ const TabNavigator = () => {
         name="FishEcom"
         component={FishEcom}
         options={{
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Ionicons name="heart-outline" color={color} size={size} />
           ),
         }}
       />
-        <Tab.Screen
-        name="OpenCamera"
-        component={OpenCamera}
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Ionicons name="heart-outline" color={color} size={size} />
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="cart-outline" color={color} size={size} />
+          ),
+          tabBarButton: (props) => (
+            <TouchableOpacity {...props} onPress={() => navigation.navigate('Cart')} />
           ),
         }}
       />
+
     </Tab.Navigator>
   );
 };
 
 const getTabBarVisibility = route => {
-  // console.log(route);
   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
-  // console.log(routeName);
 
-  if( routeName == 'FishEcom' ) {
+  if (routeName == 'FishEcom') {
     return 'none';
   }
   return 'flex';

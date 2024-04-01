@@ -1,9 +1,10 @@
+// FishEcomScreen.js
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, Modal, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, Modal } from 'react-native';
 import { ProductData } from './ProductData';
 import { Ionicons } from '@expo/vector-icons'; // Import Ionicons from Expo icons library
 
-const FishEcomScreen = () => {
+const FishEcomScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -16,27 +17,26 @@ const FishEcomScreen = () => {
     setSelectedProduct(product);
   };
 
+  const addToCart = () => {
+    // Implement logic to add item to cart
+    if (selectedProduct) {
+      navigation.navigate('Cart', { product: selectedProduct });
+      setSelectedProduct(null); // Close the product details modal after adding to cart
+    }
+  };
+
+  const openCartItems = () => {
+    // Implement logic to open cart items page
+    navigation.navigate('Cart');
+  };
+
   const closeProductDetails = () => {
     setSelectedProduct(null);
   };
 
-  const addToCart = () => {
-    // Implement logic to add item to cart
-    console.log('Added to cart:', selectedProduct);
-  };
-
-  const addToWishlist = () => {
-    // Implement logic to add item to wishlist
-    console.log('Added to wishlist:', selectedProduct);
-  };
-
-  const buyNow = () => {
-    // Implement logic to navigate to checkout or payment screen
-    console.log('Buy now:', selectedProduct);
-  };
-
   return (
     <View style={styles.container}>
+      
       {/* Search Bar */}
       <View style={styles.searchBar}>
         <Ionicons name="search" size={22} color="#C8C8CB" style={styles.searchIcon} />
@@ -49,7 +49,7 @@ const FishEcomScreen = () => {
         />
       </View>
       {/* Cart Icon */}
-      <TouchableOpacity onPress={() => console.log('Go to cart')} style={styles.cartButton}>
+      <TouchableOpacity onPress={openCartItems} style={styles.cartButton}>
         <Ionicons name="cart-outline" size={45} color="#506afa" />
       </TouchableOpacity>
 
@@ -69,7 +69,7 @@ const FishEcomScreen = () => {
                 </View>
                 {/* Product Details */}
                 <View style={styles.productDetailSection}>
-                  <Text style={styles.sponsored}>Sponsored</Text>
+                  {/* <Text style={styles.sponsored}>Sponsored</Text> */}
                   <Text style={styles.productName}>{item.productName}</Text>
                   <View style={styles.row}>
                     <Text style={styles.price}>₹ {item.price}</Text>
@@ -104,9 +104,14 @@ const FishEcomScreen = () => {
             <Image style={styles.modalProductImg} source={selectedProduct?.image} />
             <Text style={styles.modalPrice}>₹ {selectedProduct?.price}</Text>
             <View style={styles.modalButtonsContainer}>
-              <Button title="Add to Cart" onPress={addToCart} />
-              <Button title="Add to Wishlist" onPress={addToWishlist} />
-              <Button title="Buy Now" onPress={buyNow} />
+              
+              <TouchableOpacity style={styles.button} onPress={addToCart}>
+                <Ionicons name="cart-outline" size={20} color="#fff" />
+                <Text style={styles.buttonText}>Add to Cart</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={closeProductDetails}>
+                <Text style={styles.buttonText}>Close</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -122,6 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white', // Set background color to white
   },
   searchBar: {
+    marginTop:50,
     backgroundColor: 'white',
     paddingVertical: 5,
     paddingHorizontal: 5,
@@ -214,6 +220,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   cartButton: {
+    marginTop:50,
     position: 'absolute',
     top: 10,
     right: 10,
@@ -250,6 +257,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-})
+  button: {
+    backgroundColor: '#506afa',
+    padding: 10,
+    borderRadius: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    marginLeft: 5,
+  },
+});
 
 export default FishEcomScreen;

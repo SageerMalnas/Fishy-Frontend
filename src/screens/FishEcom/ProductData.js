@@ -1,8 +1,8 @@
 import Prod1 from './Assets/Prod1.jpg';
-// import Prod2 from './Assets/Prod2.jpeg';
+import Prod2 from './Assets/Prod2.jpeg';
 import Prod3 from './Assets/Prod3.jpeg';
 import Prod4 from './Assets/Prod4.jpeg';
-// import Prod5 from './Assets/Prod5.jpeg';
+import Prod5 from './Assets/Prod5.jpeg';
 import Prod6 from './Assets/Prod6.webp';
 // import Prod7 from '../assets/prod7.png';
 // import Prod8 from '../assets/prod8.png';
@@ -29,7 +29,7 @@ export const ProductData = [
     price: '1,29,999.00',
     crossOutText: '₹̶1̶3̶9̶,̶9̶9̶9̶.̶0̶0̶',
     deliveryBy: 'Sunday, 18 April',
-    image: Prod3,
+    image: Prod2,
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ export const ProductData = [
     price: '1,79,999.00',
     crossOutText: '₹̶1̶9̶9̶,̶9̶9̶9̶.̶0̶0̶',
     deliveryBy: 'Wednesday, 21 April',
-    image: Prod6,
+    image: Prod5,
   },
   {
     id: 6,
