@@ -23,9 +23,9 @@ const AppTextInput = ({ ...otherProps }) => {
           borderWidth: 3,
         },
         focused && {
-          borderColor: '#1f41bb',
+          borderColor: '#1d3557',
           borderWidth: 3,
-          shadowOffset: { width: 4, height: 10 },
+          shadowOffset: { width: 2, height: 5 },
           shadowColor: '#1f41bb',
           shadowOpacity: 0.2,
           shadowRadius: 10

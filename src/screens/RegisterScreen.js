@@ -205,17 +205,17 @@ const Register = ({ navigation: { navigate } }) => {
   const [focused, setFocused] = useState(false);
   return (
     <SafeAreaView>
-      <View style={{ padding: 20 }}>
+      <View style={{ padding: 40 }}>
         <View style={{ alignItems: 'center' }}>
 
-          <Text style={{ fontSize: 30, color: '#1f41bb', marginVertical: 30, fontWeight: 'bold' }}>
+          <Text style={{ fontSize: 25, color: '#1d3557', marginVertical: 20, fontWeight: 'bold' }}>
             Create Account
           </Text>
-          <Text style={{ fontSize: 20, maxWidth: '80%', textAlign: 'center', fontWeight: '600' }}>
+          <Text style={{ fontSize: 15, maxWidth: '80%', textAlign: 'center', fontWeight: '600' }}>
             Create an account so you can explore all the Social platform
           </Text>
         </View>
-        <View style={{ marginVertical: 30 }}>
+        <View style={{ marginVertical: 10 }}>
           <AppTextInput placeholder='Name' />
           <AppTextInput placeholder='Email' />
           <AppTextInput placeholder='Password' />
@@ -223,8 +223,8 @@ const Register = ({ navigation: { navigate } }) => {
         </View>
         <TouchableOpacity style={{
           padding: 20,
-          marginVertical: 10,
-          backgroundColor: '#1F41BB',
+          marginVertical: 5,
+          backgroundColor: '#1d3557',
           borderRadius: 10,
           shadowColor: '#1f41bb',
           shadowOffset: { width: 0, height: 10 },
@@ -252,13 +252,13 @@ const Register = ({ navigation: { navigate } }) => {
             textAlign: 'center',
             fontSize: 14
           }}>
-            Already have an account
+            Already have an account?
           </Text>
 
         </TouchableOpacity>
 
         <View style={{ marginVertical: 30 }}>
-          <Text style={{ color: '#1f41bb', textAlign: 'center', fontSize: 14 }}>
+          <Text style={{ color: '#1d3557', textAlign: 'center', fontSize: 14 }}>
             or continue with
           </Text>
 

@@ -140,7 +140,7 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AppTextInput from './AppTextInput'
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation: { navigate } }) => {
   const [focused, setFocused] = useState(false);
   const handleSignIn = () => {
     console.log('Signing in...');
@@ -148,10 +148,10 @@ const LoginScreen = ({ navigation }) => {
   };
   return (
     <SafeAreaView>
-      <View style={{ padding: 10 }}>
+      <View style={{ padding: 40 }}>
         <View style={{ alignItems: 'center' }}>
           <Image
-            style={{ height: 100 , marginTop: 40}}
+            style={{ height: 100 , marginTop: 10}}
             resizeMode="contain"
             source={require('../../assets/Logo.png')}
           />
@@ -162,7 +162,7 @@ const LoginScreen = ({ navigation }) => {
             Welcome back you've been missed!
           </Text>
         </View>
-        <View style={{ marginVertical: 30 }}>
+        <View style={{ marginVertical:10 }}>
           <AppTextInput placeholder='Email' />
           <AppTextInput placeholder='Password' />
         </View>
