@@ -24,13 +24,13 @@ const OnboardingScreen = ({navigation}) => {
           GAMEON
         </Text>
       </View>
-      {/* <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Gaming
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        {/* <Gaming
           width={300}
           height={300}
           style={{transform: [{rotate: '-15deg'}]}}
-        />
-      </View> */}
+        /> */}
+      </View>
       <TouchableOpacity
         style={{
           backgroundColor: '#AD40AF',
