@@ -15,7 +15,8 @@ const AppTextInput = ({ ...otherProps }) => {
       style={[
         {
           fontSize: 14,
-          padding: 20,
+          paddingVertical: 10, 
+          paddingHorizontal: 20,
           backgroundColor: 'f1f4ff',
           borderRadius: 10,
           marginVertical: 10,
