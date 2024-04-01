@@ -227,7 +227,7 @@ const Register = ({ navigation: { navigate } }) => {
           <AppTextInput placeholder='Confirm Password' />
         </View>
         <TouchableOpacity style={{
-          padding: 20,
+          padding: 10,
           marginVertical: 5,
           backgroundColor: '#1d3557',
           borderRadius: 10,
