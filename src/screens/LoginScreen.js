@@ -216,7 +216,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
 
         </TouchableOpacity>
 
-        <View style={{ marginVertical:  20 }}>
+        <View style={{ marginVertical:  10 }}>
           <Text style={{ color: '#1f41bb', textAlign: 'center', fontSize: 14 }}>
             or continue with
           </Text>

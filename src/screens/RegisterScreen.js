@@ -257,8 +257,8 @@ const Register = ({ navigation: { navigate } }) => {
 
         </TouchableOpacity>
 
-        <View style={{ marginVertical: 30 }}>
-          <Text style={{ color: '#1d3557', textAlign: 'center', fontSize: 14 }}>
+        <View style={{ marginVertical: 10 }}>
+          <Text style={{ color: '#1f41bb', textAlign: 'center', fontSize: 14 }}>
             or continue with
           </Text>
 
