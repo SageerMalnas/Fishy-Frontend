@@ -133,8 +133,8 @@ import AppStack from './src/navigation/AppStack';
 function App() {
   return (
     <NavigationContainer>
-      {/* <AppStack /> */}
-      <AuthStack />
+      <AppStack />
+      {/* <AuthStack /> */}
     </NavigationContainer>
   );
 }

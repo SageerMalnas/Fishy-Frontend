@@ -1,4 +1,3 @@
-// FishEcomScreen.js
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, Modal } from 'react-native';
 import { ProductData } from './ProductData';
@@ -7,6 +6,8 @@ import { Ionicons } from '@expo/vector-icons'; // Import Ionicons from Expo icon
 const FishEcomScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   // Filter products based on search text
   const filteredProducts = ProductData.filter(
@@ -17,17 +18,21 @@ const FishEcomScreen = ({ navigation }) => {
     setSelectedProduct(product);
   };
 
-  const addToCart = () => {
-    // Implement logic to add item to cart
-    if (selectedProduct) {
-      navigation.navigate('Cart', { product: selectedProduct });
-      setSelectedProduct(null); // Close the product details modal after adding to cart
-    }
+  const addToCart = (product) => {
+    // Add the selected product to the cart
+    setCartItems([...cartItems, product]);
+    setSelectedProduct(null); // Close the product details modal after adding to cart
+  };
+
+  const addToWishlist = (product) => {
+    setWishlistItems([...wishlistItems, product]);
+    console.log('Wishlist items:', wishlistItems); // Add this line
+    setSelectedProduct(null);
   };
 
   const openCartItems = () => {
-    // Implement logic to open cart items page
-    navigation.navigate('Cart');
+    // Navigate to the cart screen
+    navigation.navigate('Cart', { cartItems, updateCartItems: setCartItems });
   };
 
   const closeProductDetails = () => {
@@ -36,7 +41,7 @@ const FishEcomScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      
+
       {/* Search Bar */}
       <View style={styles.searchBar}>
         <Ionicons name="search" size={22} color="#C8C8CB" style={styles.searchIcon} />
@@ -48,10 +53,15 @@ const FishEcomScreen = ({ navigation }) => {
           onChangeText={text => setSearchText(text)}
         />
       </View>
-      {/* Cart Icon */}
-      <TouchableOpacity onPress={openCartItems} style={styles.cartButton}>
-        <Ionicons name="cart-outline" size={45} color="#506afa" />
-      </TouchableOpacity>
+      {/* Cart and Wishlist Icons */}
+      <View style={styles.iconContainer}>
+        <TouchableOpacity onPress={openCartItems} style={styles.cartIcon}>
+          <Ionicons name="cart-outline" size={30} color="#506afa" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Wishlist', { wishlistItems })} style={styles.wishlistIcon}>
+          <Ionicons name="heart-outline" size={30} color="#506afa" />
+        </TouchableOpacity>
+      </View>
 
       {/* Product List */}
       <ScrollView>
@@ -69,7 +79,6 @@ const FishEcomScreen = ({ navigation }) => {
                 </View>
                 {/* Product Details */}
                 <View style={styles.productDetailSection}>
-                  {/* <Text style={styles.sponsored}>Sponsored</Text> */}
                   <Text style={styles.productName}>{item.productName}</Text>
                   <View style={styles.row}>
                     <Text style={styles.price}>₹ {item.price}</Text>
@@ -104,13 +113,13 @@ const FishEcomScreen = ({ navigation }) => {
             <Image style={styles.modalProductImg} source={selectedProduct?.image} />
             <Text style={styles.modalPrice}>₹ {selectedProduct?.price}</Text>
             <View style={styles.modalButtonsContainer}>
-              
-              <TouchableOpacity style={styles.button} onPress={addToCart}>
+              <TouchableOpacity style={styles.button} onPress={() => addToCart(selectedProduct)}>
                 <Ionicons name="cart-outline" size={20} color="#fff" />
                 <Text style={styles.buttonText}>Add to Cart</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={closeProductDetails}>
-                <Text style={styles.buttonText}>Close</Text>
+              <TouchableOpacity style={styles.button} onPress={() => addToWishlist(selectedProduct)}>
+                <Ionicons name="heart-outline" size={20} color="#fff" />
+                <Text style={styles.buttonText}>Add to Wishlist</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -127,7 +136,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white', // Set background color to white
   },
   searchBar: {
-    marginTop:50,
+    marginTop: 50,
     backgroundColor: 'white',
     paddingVertical: 5,
     paddingHorizontal: 5,
@@ -168,8 +177,9 @@ const styles = StyleSheet.create({
   },
   productImgSection: {
     width: '40%',
-    backgroundColor: '#e0e0e2', // Set background color to #e0e0e2
+    backgroundColor: '#e0e0e2',
     justifyContent: 'center',
+    alignItems: 'center', // Center the image within its container
   },
   productDetailSection: {
     width: '60%',
@@ -178,12 +188,7 @@ const styles = StyleSheet.create({
   productImg: {
     height: 150,
     width: '100%',
-    resizeMode: 'contain',
-  },
-  sponsored: {
-    fontSize: 11,
-    color: 'grey',
-    marginBottom: 5,
+    resizeMode: 'contain', // Ensure the entire image fits within its container
   },
   productName: {
     fontSize: 12,
@@ -219,11 +224,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
   },
-  cartButton: {
-    marginTop:50,
-    position: 'absolute',
-    top: 10,
-    right: 10,
+  iconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  cartIcon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  wishlistIcon: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalContainer: {
     flex: 1,
