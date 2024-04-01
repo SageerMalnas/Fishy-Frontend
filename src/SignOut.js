@@ -4,13 +4,10 @@ import React from 'react';
 import { View, Button } from 'react-native';
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 
-const CustomDrawerContent = (props) => {
+const CustomDrawerContent = ({ navigation }) => {
   const handleSignOut = () => {
-    // Your sign-out logic here
-    // For example, clear authentication tokens and navigate to the login screen
-    console.log('User signed out');
-    // Navigate to a login or welcome screen, if applicable
-    // props.navigation.navigate('LoginScreen');
+    console.log('User signed out')
+    navigation.navigate('Login');
   };
 
   return (

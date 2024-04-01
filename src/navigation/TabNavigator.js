@@ -10,6 +10,7 @@ import FishEcom from '../screens/FishEcom/FishEcomScreen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
+import LoginScreen from '../screens/LoginScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -25,6 +26,13 @@ const HomeStack = () => {
       <Stack.Screen
         name="OpenCamera"
         component={OpenCamera}
+        options={({route}) => ({
+          title: route.params?.title,
+        })}
+      />
+       <Stack.Screen
+        name="Login"
+        component={LoginScreen}
         options={({route}) => ({
           title: route.params?.title,
         })}
