@@ -144,7 +144,8 @@ const LoginScreen = ({ navigation: { navigate } }) => {
   const [focused, setFocused] = useState(false);
   const handleSignIn = () => {
     console.log('Signing in...');
-    navigation.navigate('AppStack');
+    navigate("AppStack");
+    
   };
   return (
     <SafeAreaView>
