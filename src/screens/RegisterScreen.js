@@ -19,84 +19,13 @@
 // import GoogleSVG from '../assets/images/misc/google.svg';
 // import FacebookSVG from '../assets/images/misc/facebook.svg';
 // import TwitterSVG from '../assets/images/misc/twitter.svg';
-<<<<<<< HEAD
-import CustomButton from '../components/CustomButton';
-=======
 // import CustomButton from '../components/CustomButton';
->>>>>>> 56c0c36fb080e49ed8bd6b4980f80a5de8c7c89f
 
 // const RegisterScreen = ({navigation}) => {
 //   const [date, setDate] = useState(new Date());
 //   const [open, setOpen] = useState(false);
 //   const [dobLabel, setDobLabel] = useState('Date of Birth');
 
-<<<<<<< HEAD
-  return (
-    <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{paddingHorizontal: 25}}>
-        <View style={{alignItems: 'center'}}>
-          {/* <RegistrationSVG
-            height={300}
-            width={300}
-            style={{transform: [{rotate: '-5deg'}]}}
-          /> */}
-        </View>
-
-        <Text
-          style={{
-            marginTop:50,
-            fontFamily: 'Roboto-Medium',
-            fontSize: 28,
-            fontWeight: '500',
-            color: '#333',
-            marginBottom: 30,
-          }}>
-          Register
-        </Text>
-
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginBottom: 30,
-          }}>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              borderColor: '#ddd',
-              borderWidth: 2,
-              borderRadius: 10,
-              paddingHorizontal: 30,
-              paddingVertical: 10,
-            }}>
-            {/* <GoogleSVG height={24} width={24} /> */}
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              borderColor: '#ddd',
-              borderWidth: 2,
-              borderRadius: 10,
-              paddingHorizontal: 30,
-              paddingVertical: 10,
-            }}>
-            {/* <FacebookSVG height={24} width={24} /> */}
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              borderColor: '#ddd',
-              borderWidth: 2,
-              borderRadius: 10,
-              paddingHorizontal: 30,
-              paddingVertical: 10,
-            }}>
-            {/* <TwitterSVG height={24} width={24} /> */}
-          </TouchableOpacity>
-        </View>
-=======
 //   return (
 //     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
 //       <ScrollView
@@ -161,7 +90,6 @@ import CustomButton from '../components/CustomButton';
 //             <TwitterSVG height={24} width={24} />
 //           </TouchableOpacity>
 //         </View>
->>>>>>> 56c0c36fb080e49ed8bd6b4980f80a5de8c7c89f
 
 //         <Text style={{textAlign: 'center', color: '#666', marginBottom: 30}}>
 //           Or, register with email ...

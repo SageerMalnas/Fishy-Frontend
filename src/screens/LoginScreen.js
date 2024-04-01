@@ -18,19 +18,6 @@
 // import CustomButton from '../components/CustomButton';
 // import InputField from '../components/InputField';
 
-<<<<<<< HEAD
-const LoginScreen = ({navigation}) => {
-  return (
-    <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
-      <View style={{paddingHorizontal: 25}}>
-        <View style={{alignItems: 'center'}}>
-          {/* <LoginSVG
-            height={300}
-            width={300}
-            style={{transform: [{rotate: '-5deg'}]}}
-          /> */}
-        </View>
-=======
 // const LoginScreen = ({navigation}) => {
 //   return (
 //     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
@@ -42,7 +29,6 @@ const LoginScreen = ({navigation}) => {
 //             style={{transform: [{rotate: '-5deg'}]}}
 //           />
 //         </View>
->>>>>>> 56c0c36fb080e49ed8bd6b4980f80a5de8c7c89f
 
 //         <Text
 //           style={{
@@ -89,47 +75,6 @@ const LoginScreen = ({navigation}) => {
 //           Or, login with ...
 //         </Text>
 
-<<<<<<< HEAD
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginBottom: 30,
-          }}>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              borderColor: '#ddd',
-              borderWidth: 2,
-              borderRadius: 10,
-              paddingHorizontal: 30,
-              paddingVertical: 10,
-            }}>
-            {/* <GoogleSVG height={24} width={24} /> */}
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              borderColor: '#ddd',
-              borderWidth: 2,
-              borderRadius: 10,
-              paddingHorizontal: 30,
-              paddingVertical: 10,
-            }}>
-            {/* <FacebookSVG height={24} width={24} /> */}
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              borderColor: '#ddd',
-              borderWidth: 2,
-              borderRadius: 10,
-              paddingHorizontal: 30,
-              paddingVertical: 10,
-            }}>
-            {/* <TwitterSVG height={24} width={24} /> */}
-          </TouchableOpacity>
-=======
 //         <View
 //           style={{
 //             flexDirection: 'row',
@@ -221,7 +166,6 @@ const LoginScreen = ({ navigation: { navigate } }) => {
         <View style={{ marginVertical:10 }}>
           <AppTextInput placeholder='Email' />
           <AppTextInput placeholder='Password' />
->>>>>>> 56c0c36fb080e49ed8bd6b4980f80a5de8c7c89f
         </View>
 
         <View>
