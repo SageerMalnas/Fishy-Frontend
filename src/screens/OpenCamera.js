@@ -102,8 +102,9 @@ const OpenCamera = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1d3557',
-    paddingTop: 10, // Adjust padding from the top
+    backgroundColor: '#f0f8ff',
+    padding: 20,
+    paddingTop: 50, // Adjust padding from the top
     height: 800,
   },
   innerContainer: {

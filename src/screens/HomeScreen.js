@@ -40,16 +40,17 @@ export default function HomeScreen({ navigation }) {
     }).start();
   }, [titleAnim]);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", paddingTop: 40 }}>
-      <ScrollView style={{ paddingHorizontal: 20 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#f0f8ff", paddingTop: 40 }}>
+      <ScrollView style={{ paddingHorizontal: 20  } } isVerticalScrollBarEnabled ={false}>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
             marginBottom: 20,
+           
           }}
         >
-          <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" }}>
+          <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium", color:"#fff" }}>
             Hello Rutuja
           </Text>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>

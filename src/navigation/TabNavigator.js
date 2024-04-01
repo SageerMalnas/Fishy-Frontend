@@ -10,6 +10,7 @@ import FishEcom from '../screens/FishEcom/FishEcomScreen';
 import CartScreen from '../screens/FishEcom/CartScreen'; // Import the CartScreen component
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
+import LoginScreen from '../screens/LoginScreen';
 import WishlistScreen from '../screens/FishEcom/WishlistScreen';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,6 +27,13 @@ const HomeStack = () => {
         name="OpenCamera"
         component={OpenCamera}
         options={({ route }) => ({
+          title: route.params?.title,
+        })}
+      />
+       <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={({route}) => ({
           title: route.params?.title,
         })}
       />
