@@ -63,6 +63,61 @@ const FishExperts = [
     location: 'Hyderabad, India',
     experience: '10 years'
   },
+  {
+    id: 1,
+    name: 'Dr. Neha Kapoor',
+    expertise: ' Fish Nutrition',
+    image: require('../../src/assets/Expert/expert1.jpg'),
+    phone: '+91 8457965217',
+    rating: 3.8,
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
+    location: 'Jaipur, Rajasthan',
+    experience: '9 years'
+  },
+  {
+    id: 1,
+    name: 'Dr. Vikram Singh',
+    expertise: 'Ornamental Fish Breeding',
+    image: require('../../src/assets/Expert/expert2.jpg'),
+    phone: '+91 8752257563',
+    rating: 4.1,
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
+    location: 'Bangalore,Karnataka',
+    experience: '11 years'
+  },
+  {
+    id: 1,
+    name: 'Dr. Nisha Patel',
+    expertise: ' Fish Genetics',
+    image: require('../../src/assets/Expert/expert3.jpg'),
+    phone: ' +91 9992535238',
+    rating: 4,
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
+    location: ' Ahmedabad, Gujarat',
+    experience: '9 years'
+  },
+  {
+    id: 1,
+    name: 'Dr. Arjun Singhania',
+    expertise: 'Ornamental Fish Breeding and Genetics',
+    image: require('../../src/assets/Expert/expert4.jpg'),
+    phone: '+91 8856889846',
+    rating: 3.9,
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
+    location: 'Kolkata, India',
+    experience: '15 years'
+  },
+  {
+    id: 1,
+    name: 'Dr. Preeti Mishra',
+    expertise: ' Fish Reproduction and Hatchery Management',
+    image: require('../../src/assets/Expert/expert5.jpg'),
+    phone: '+91 7777265954',
+    rating: 4,
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
+    location: 'Pune, Maharashtra',
+    experience: '11 years'
+  },
 ];
 
 const RatingStars = ({ rating }) => {
@@ -80,12 +135,14 @@ const RatingStars = ({ rating }) => {
   return <View style={styles.ratingContainer}>{stars}</View>;
 };
 
-const ExpertCard = ({ expert, onPress , selectedDate, setSelectedDate}) => {
+const ExpertCard = ({ expert, onPress, selectedDate, setSelectedDate }) => {
   const [expanded, setExpanded] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isNameFocused, setIsNameFocused] = useState(false);
+  const [datePickerVisible, setDatePickerVisible] = useState(false);
+
 
   const onGetHelp = () => {
     setModalVisible(true);
@@ -156,12 +213,41 @@ const ExpertCard = ({ expert, onPress , selectedDate, setSelectedDate}) => {
                 onFocus={() => setIsNameFocused(true)}
                 onBlur={() => setIsNameFocused(false)}
               />
-              <Calendar
-                onDayPress={(day) => setSelectedDate(day.dateString)}
-                markedDates={{
-                  [selectedDate]: { selected: true, disableTouchEvent: true, selectedColor: '#1c3559', selectedTextColor: 'white' }
-                }}
-              />
+              <View style={styles.inputContainer}>
+                <TextInput
+                  style={[
+                    styles.input,
+                    styles.dateInput,
+                    datePickerVisible && styles.dateInputSelected,
+                    !selectedDate && styles.placeholderText]}
+                  placeholder="Select Date"
+                  placeholderTextColor="#666"
+                  value={selectedDate ? selectedDate : 'YYYY-MM-DD'}
+                  editable={false}
+                />
+                <TouchableOpacity onPress={() => setDatePickerVisible(true)}>
+                  <MaterialCommunityIcons name="calendar" size={24} color="#1C3559" />
+                </TouchableOpacity>
+              </View>
+              {datePickerVisible && (
+                <Calendar
+                  onDayPress={(day) => {
+                    setSelectedDate(day.dateString);
+                    setDatePickerVisible(false);
+                  }}
+                  markedDates={{
+                    [selectedDate]: { selected: true, disableTouchEvent: true, selectedColor: '#1c3559', selectedTextColor: 'white' }
+                  }}
+                  theme={{
+                    textDayFontFamily: 'your-font-family', // Optionally, specify your font family
+                    textDayFontColor: '#1c3559', // Color of the day text
+                    textMonthFontFamily: 'your-font-family', // Optionally, specify your font family
+                    textMonthFontColor: '#1c3559', // Color of the month text
+                    textDayHeaderFontFamily: 'your-font-family', // Optionally, specify your font family
+                    textDayHeaderFontColor: '#1c3559', // Color of the day header text
+                  }}
+                />
+              )}
               <View style={styles.buttonContainer}>
                 <Button title="Book Appointment" onPress={handleBookAppointment} color="#1c3559" />
               </View>
@@ -195,12 +281,12 @@ export default function MessagesScreen() {
       </View>
       <ScrollView contentContainerStyle={styles.scrollView}>
         {FishExperts.map(expert => (
-          <ExpertCard 
-          key={expert.id} 
-          expert={expert} 
-          onPress={handleCardPress} 
-          selectedDate={selectedDate} 
-          setSelectedDate={setSelectedDate}/>
+          <ExpertCard
+            key={expert.id}
+            expert={expert}
+            onPress={handleCardPress}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate} />
         ))}
       </ScrollView>
     </View>
@@ -343,25 +429,46 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   input: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
     borderWidth: 2,
     borderColor: '#1C3559',
     borderRadius: 5,
-    paddingHorizontal: 5,
-    paddingVertical: 8,
-    marginBottom: 10,
+    paddingHorizontal: 10,
     width: 250,
+    height: 40,
   },
   inputFocused: {
-    borderColor: 'white',
+    borderColor: '#1C3559',
   },
   closeButton: {
     marginTop: 20,
-    backgroundColor: 'white', // Adjust this value as needed
+    backgroundColor: '#1C3559',
+    borderRadius: 7,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 10, // Adjust this value as needed
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // justifyContent: 'space-between',
+    marginBottom: 10,
+    width: 250,
+    paddingHorizontal: 10,
+  },
+  dateInput: {
+    flex: 1,
+    marginRight: 10,
+    paddingVertical: 8,
+    zIndex: 1,
+    color: "#000",
+  },
+  dateInputSelected: {
+    color: '#000',
   },
 });
 
