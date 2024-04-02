@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome icon set
-import { unloadAllAsync } from 'expo-font';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal, ScrollView ,ImageBackground} from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+// import Navbar from '../../Navbar';
 
-const CartScreen = ({ route }) => {
-  const [cartItems, setCartItems] = useState(route.params?.cartItems || []);  
+const CartScreen = ({ route ,navigation}) => {
+  const [cartItems, setCartItems] = useState(route.params?.cartItems || []);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const [totalPrice, setTotalPrice] = useState(route.params?.totalPrice || 0);
+  // Function to calculate total price including delivery charges
   // Function to calculate total price including delivery charges
   const calculateTotalPrice = () => {
+
     const deliveryCharge = 50; // Assuming delivery charge is ₹50
-    const productPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-    return productPrice + deliveryCharge;
+    const productPrice = cartItems.reduce((total, item) => total + (item.price), 0);
+    const totalPrice = parseFloat((productPrice + deliveryCharge));
+    return totalPrice;
   };
+
 
   // Function to toggle modal visibility
   const toggleModal = () => {
@@ -22,45 +26,77 @@ const CartScreen = ({ route }) => {
   // Function to remove item from the cart
   const removeItem = (index) => {
     const updatedCartItems = [...cartItems];
+    // const updatedCartItems = cartItems.filter((cartItems) => cartItems.id !== index.id);
     updatedCartItems.splice(index, 1);
-    // Update the state with the new cart items
-    // You would typically use a state management library like Redux to manage state across components
-    // For simplicity, I'm assuming cartItems is managed by the parent component and passed as props
-    // This function should also update the cartItems in the database or storage
-    console.log("Item removed:", updatedCartItems[index]);
     setCartItems(updatedCartItems);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Your Cart Items</Text>
-      <View style={styles.itemContainer}>
-        {cartItems.length > 0 ? (
-          cartItems.map((item, index) => (
-            <View key={index} style={styles.cartItem}>
-              <View style={styles.productImgSection}>
-                <Image style={styles.productImg} source={item.image} />
-              </View>
-              <Text style={styles.itemName}>{item.productName}</Text>
-              <Text style={styles.itemPrice}>Price: ₹ {item.price}</Text>
-              <TouchableOpacity onPress={() => removeItem(index)} style={styles.removeIcon}>
-                <FontAwesome name="trash" size={20} color="red" />
-              </TouchableOpacity>
-            </View>
-          ))
-        ) : (
-          <Text style={styles.emptyCart}>Oops! Seems like you don't want anything for your fish!</Text>
-        )}
-      </View>
-
-      <View style={styles.footer}>
-        <Text style={styles.priceDetails}>Product Price: ₹{cartItems.reduce((total, item) => total + (item.price * item.quantity), 1)}</Text>
-        <Text style={styles.priceDetails}>Delivery Charge: ₹50</Text>
-        <Text style={styles.totalPrice}>Total Price: ₹{calculateTotalPrice()}</Text>
-        <TouchableOpacity onPress={toggleModal}>
-          <Text style={styles.proceedButton}>Proceed to Pay</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: 5,
+        }}
+      >
+        <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" }}>
+          Hello Rutuja
+        </Text>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <ImageBackground
+            source={require("../../assets/images/user-profile.jpg")}
+            style={{ width: 45, height: 45 }}
+            imageStyle={{ borderRadius: 25 }}
+          />
         </TouchableOpacity>
       </View>
+      <Text style={styles.title}>Your Cart Items</Text>
+      <ScrollView>
+        <View style={styles.itemContainer}>
+
+          {cartItems.length > 0 ? (
+            cartItems.map((item, index) => (
+              <View key={index} style={styles.cartItem}>
+                <View style={styles.productImgSection}>
+                  <Image style={styles.productImg} source={item.image} />
+                </View>
+                <Text style={styles.itemName}>{item.productName}</Text>
+                <Text style={styles.itemPrice}>Price: ₹ {item.price}</Text>
+                <TouchableOpacity onPress={() => removeItem(index)} style={styles.removeIcon}>
+                  <FontAwesome name="trash" size={20} color="red" />
+                </TouchableOpacity>
+              </View>
+            ))
+          ) : (
+            <Text style={styles.emptyCart}>Oops! Seems like you don't want anything for your fish!</Text>
+          )}
+        </View>
+
+        <View style={styles.footer}>
+          {cartItems.map((item, index) => (
+            <Text key={index} style={styles.productPrice}>Price for Item {index + 1}: ₹{item.price}</Text>
+          ))}
+          {cartItems.length > 0 && (
+            <Text style={styles.productPrice}>Delivery Charge: + ₹50</Text>
+          )}
+          {
+            cartItems.length > 0 && (
+              <Text style={styles.totalPrice}>Total Price: ₹{totalPrice}</Text>
+            )
+          }
+          {
+            cartItems.length > 0 && (
+              <TouchableOpacity onPress={toggleModal}>
+                <Text style={styles.proceedButton}>Proceed to Pay</Text>
+              </TouchableOpacity>
+            )
+          }
+
+        </View>
+      </ScrollView>
+
+
       {/* Modal */}
       <Modal
         animationType="slide"
@@ -133,7 +169,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     alignItems: 'center',
   },
-  priceDetails: {
+  productPrice: {
     fontWeight: 'bold',
     marginBottom: 5,
   },
@@ -142,7 +178,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   proceedButton: {
-    backgroundColor: '#FC8F00',
+    backgroundColor: '#506afa',
     fontSize: 20,
     color: '#fff',
     padding: 10,
