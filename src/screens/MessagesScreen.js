@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Calendar } from 'react-native-calendars';
 
-
 const windowWidth = Dimensions.get('window').width;
 
 const FishExperts = [
@@ -142,17 +141,18 @@ const ExpertCard = ({ expert, onPress, selectedDate, setSelectedDate }) => {
   const [email, setEmail] = useState('');
   const [isNameFocused, setIsNameFocused] = useState(false);
   const [datePickerVisible, setDatePickerVisible] = useState(false);
+  // const [showReadMore, setShowReadMore] = useState(true);
 
+  const toggleReadMore = () => {
+    setShowReadMore(!showReadMore);
+  };
 
   const onGetHelp = () => {
     setModalVisible(true);
   };
 
   const handleBookAppointment = () => {
-    // Logic for booking appointment
     console.log('Appointment booked');
-    // You can add your booking appointment logic here
-    // For now, let's just close the modal when the appointment is booked
     setModalVisible(false);
   };
 
@@ -174,6 +174,7 @@ const ExpertCard = ({ expert, onPress, selectedDate, setSelectedDate }) => {
             {expanded && (
               <Text style={styles.details}>{expert.details}</Text>
             )}
+             
           </View>
         </View>
         <View style={styles.actionsContainer}>
@@ -238,14 +239,6 @@ const ExpertCard = ({ expert, onPress, selectedDate, setSelectedDate }) => {
                   markedDates={{
                     [selectedDate]: { selected: true, disableTouchEvent: true, selectedColor: '#1c3559', selectedTextColor: 'white' }
                   }}
-                  theme={{
-                    textDayFontFamily: 'your-font-family', // Optionally, specify your font family
-                    textDayFontColor: '#1c3559', // Color of the day text
-                    textMonthFontFamily: 'your-font-family', // Optionally, specify your font family
-                    textMonthFontColor: '#1c3559', // Color of the month text
-                    textDayHeaderFontFamily: 'your-font-family', // Optionally, specify your font family
-                    textDayHeaderFontColor: '#1c3559', // Color of the day header text
-                  }}
                 />
               )}
               <View style={styles.buttonContainer}>
@@ -270,6 +263,7 @@ const ExpertCard = ({ expert, onPress, selectedDate, setSelectedDate }) => {
 
 export default function MessagesScreen() {
   const [selectedDate, setSelectedDate] = useState(null)
+
   const handleCardPress = (expert) => {
     // Implement navigation logic here
   };
@@ -465,11 +459,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
     paddingVertical: 8,
     zIndex: 1,
-    color: "#000",
+    color: "gray",
   },
   dateInputSelected: {
     color: '#000',
   },
 });
-
-// export default styles;
