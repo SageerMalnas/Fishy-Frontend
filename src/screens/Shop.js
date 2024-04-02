@@ -437,6 +437,7 @@ const Shop = ({ navigation }) => {
           borderRadius: 8,
           paddingHorizontal: 10,
           paddingVertical: 8,
+          backgroundColor:"white",
         }}
       >
         <Feather

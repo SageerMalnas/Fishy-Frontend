@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, Modal, ImageBackground } from 'react-native';
 import { ProductData } from './ProductData';
 import { Ionicons } from '@expo/vector-icons'; // Import Ionicons from Expo icons library
+
 
 const FishEcomScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [wishlistItems, setWishlistItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // Filter products based on search text
   const filteredProducts = ProductData.filter(
@@ -21,6 +23,7 @@ const FishEcomScreen = ({ navigation }) => {
   const addToCart = (product) => {
     // Add the selected product to the cart
     setCartItems([...cartItems, product]);
+    setTotalPrice(totalPrice + product.price);
     setSelectedProduct(null); // Close the product details modal after adding to cart
   };
 
@@ -41,10 +44,28 @@ const FishEcomScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: 5,
+        }}
+      >
+        <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" }}>
+          Hello Rutuja
+        </Text>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <ImageBackground
+            source={require("../../assets/images/user-profile.jpg")}
+            style={{ width: 45, height: 45 }}
+            imageStyle={{ borderRadius: 25 }}
+          />
+        </TouchableOpacity>
+      </View>
       {/* Search Bar */}
+
       <View style={styles.searchBar}>
-        <Ionicons name="search" size={22} color="#C8C8CB" style={styles.searchIcon} />
+        <Ionicons name="search" size={22} color="#C6C6C6" style={styles.searchIcon} />
         <TextInput
           style={styles.input}
           placeholder="Search products..."
@@ -132,11 +153,11 @@ const FishEcomScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    backgroundColor: 'white', // Set background color to white
+    padding: 20,
+    backgroundColor: "#f0f8ff",
+    paddingTop: 50,
   },
   searchBar: {
-    marginTop: 50,
     backgroundColor: 'white',
     paddingVertical: 5,
     paddingHorizontal: 5,
@@ -145,8 +166,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 8,
     borderWidth: 1,
-    width: '80%',
-    borderColor: '#5F71E5', // Set border color to #506afa
+    width: '100%',
+    borderColor: '#C6C6C6', // Set border color to #506afa
   },
   searchIcon: {
     marginRight: 10,
@@ -168,32 +189,40 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   productSection: {
-    borderWidth: 0.2,
-    borderColor: '#dddddd',
+    // borderWidth: 0.2,
+    // borderColor: '#dddddd',
+    // borderRadius: 30,
+    // marginVertical: 10,
+    // backgroundColor: "white",
+    marginBottom: 20,
+    padding: 10,
+    backgroundColor: "#fff", // White background color for each shop card
     flexDirection: 'row',
-    borderRadius: 30,
-    marginVertical: 10,
-    backgroundColor: '#F0F0F0',
+    borderRadius: 10,
+    elevation: 3, // Add elevation for shadow effect
   },
   productImgSection: {
     width: '40%',
     backgroundColor: '#e0e0e2',
     justifyContent: 'center',
     alignItems: 'center', // Center the image within its container
+    backgroundColor:"white"
   },
   productDetailSection: {
     width: '60%',
     padding: 10,
   },
   productImg: {
-    height: 150,
-    width: '100%',
-    resizeMode: 'contain', // Ensure the entire image fits within its container
+    width: 100,
+    height: 100,
+    marginBottom: 10,
+    borderRadius: 5, // Ensure the entire image fits within its container
   },
   productName: {
-    fontSize: 12,
-    color: 'black',
-    lineHeight: 18,
+    fontWeight: "bold",
+    fontSize: 18,
+    marginBottom: 5,
+    color: '#1d3557'
   },
   row: {
     flexDirection: 'row',
