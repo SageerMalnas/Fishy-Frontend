@@ -21,7 +21,7 @@ const CustomDrawer = props => {
         {...props}
         contentContainerStyle={{backgroundColor: '#1d3557'}}>
         <ImageBackground
-          source={require('../assets/images/menu-bg.jpeg')}
+          source={require('../assets/images/bluebg.jpg')}
           style={{padding: 20}}>
           <Image
             source={require('../assets/images/user-profile.jpg')}
@@ -34,7 +34,7 @@ const CustomDrawer = props => {
               fontFamily: 'Roboto-Medium',
               marginBottom: 5,
             }}>
-          Rutuja
+          Rutuja Hujare
           </Text>
          
         </ImageBackground>
