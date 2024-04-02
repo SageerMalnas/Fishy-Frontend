@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, Modal, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, Modal, ImageBackground } from 'react-native';
 import { ProductData } from './ProductData';
 import { Ionicons } from '@expo/vector-icons'; // Import Ionicons from Expo icons library
 
-const FishEcomScreen = () => {
+
+const FishEcomScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // Filter products based on search text
   const filteredProducts = ProductData.filter(
@@ -16,30 +20,52 @@ const FishEcomScreen = () => {
     setSelectedProduct(product);
   };
 
+  const addToCart = (product) => {
+    // Add the selected product to the cart
+    setCartItems([...cartItems, product]);
+    setTotalPrice(totalPrice + product.price);
+    setSelectedProduct(null); // Close the product details modal after adding to cart
+  };
+
+  const addToWishlist = (product) => {
+    setWishlistItems([...wishlistItems, product]);
+    console.log('Wishlist items:', wishlistItems); // Add this line
+    setSelectedProduct(null);
+  };
+
+  const openCartItems = () => {
+    // Navigate to the cart screen
+    navigation.navigate('Cart', { cartItems, updateCartItems: setCartItems });
+  };
+
   const closeProductDetails = () => {
     setSelectedProduct(null);
   };
 
-  const addToCart = () => {
-    // Implement logic to add item to cart
-    console.log('Added to cart:', selectedProduct);
-  };
-
-  const addToWishlist = () => {
-    // Implement logic to add item to wishlist
-    console.log('Added to wishlist:', selectedProduct);
-  };
-
-  const buyNow = () => {
-    // Implement logic to navigate to checkout or payment screen
-    console.log('Buy now:', selectedProduct);
-  };
-
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: 5,
+        }}
+      >
+        <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" }}>
+          Hello Rutuja
+        </Text>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <ImageBackground
+            source={require("../../assets/images/user-profile.jpg")}
+            style={{ width: 45, height: 45 }}
+            imageStyle={{ borderRadius: 25 }}
+          />
+        </TouchableOpacity>
+      </View>
       {/* Search Bar */}
+
       <View style={styles.searchBar}>
-        <Ionicons name="search" size={22} color="#C8C8CB" style={styles.searchIcon} />
+        <Ionicons name="search" size={22} color="#C6C6C6" style={styles.searchIcon} />
         <TextInput
           style={styles.input}
           placeholder="Search products..."
@@ -48,10 +74,15 @@ const FishEcomScreen = () => {
           onChangeText={text => setSearchText(text)}
         />
       </View>
-      {/* Cart Icon */}
-      <TouchableOpacity onPress={() => console.log('Go to cart')} style={styles.cartButton}>
-        <Ionicons name="cart-outline" size={45} color="#506afa" />
-      </TouchableOpacity>
+      {/* Cart and Wishlist Icons */}
+      <View style={styles.iconContainer}>
+        <TouchableOpacity onPress={openCartItems} style={styles.cartIcon}>
+          <Ionicons name="cart-outline" size={30} color="#506afa" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Wishlist', { wishlistItems })} style={styles.wishlistIcon}>
+          <Ionicons name="heart-outline" size={30} color="#506afa" />
+        </TouchableOpacity>
+      </View>
 
       {/* Product List */}
       <ScrollView>
@@ -69,7 +100,6 @@ const FishEcomScreen = () => {
                 </View>
                 {/* Product Details */}
                 <View style={styles.productDetailSection}>
-                  <Text style={styles.sponsored}>Sponsored</Text>
                   <Text style={styles.productName}>{item.productName}</Text>
                   <View style={styles.row}>
                     <Text style={styles.price}>₹ {item.price}</Text>
@@ -104,9 +134,14 @@ const FishEcomScreen = () => {
             <Image style={styles.modalProductImg} source={selectedProduct?.image} />
             <Text style={styles.modalPrice}>₹ {selectedProduct?.price}</Text>
             <View style={styles.modalButtonsContainer}>
-              <Button title="Add to Cart" onPress={addToCart} />
-              <Button title="Add to Wishlist" onPress={addToWishlist} />
-              <Button title="Buy Now" onPress={buyNow} />
+              <TouchableOpacity style={styles.button} onPress={() => addToCart(selectedProduct)}>
+                <Ionicons name="cart-outline" size={20} color="#fff" />
+                <Text style={styles.buttonText}>Add to Cart</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => addToWishlist(selectedProduct)}>
+                <Ionicons name="heart-outline" size={20} color="#fff" />
+                <Text style={styles.buttonText}>Add to Wishlist</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -118,8 +153,9 @@ const FishEcomScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    backgroundColor: 'white', // Set background color to white
+    padding: 20,
+    backgroundColor: "#f0f8ff",
+    paddingTop: 50,
   },
   searchBar: {
     backgroundColor: 'white',
@@ -130,8 +166,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 8,
     borderWidth: 1,
-    width: '80%',
-    borderColor: '#5F71E5', // Set border color to #506afa
+    width: '100%',
+    borderColor: '#C6C6C6', // Set border color to #506afa
   },
   searchIcon: {
     marginRight: 10,
@@ -153,36 +189,40 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   productSection: {
-    borderWidth: 0.2,
-    borderColor: '#dddddd',
+    // borderWidth: 0.2,
+    // borderColor: '#dddddd',
+    // borderRadius: 30,
+    // marginVertical: 10,
+    // backgroundColor: "white",
+    marginBottom: 20,
+    padding: 10,
+    backgroundColor: "#fff", // White background color for each shop card
     flexDirection: 'row',
-    borderRadius: 30,
-    marginVertical: 10,
-    backgroundColor: '#F0F0F0',
+    borderRadius: 10,
+    elevation: 3, // Add elevation for shadow effect
   },
   productImgSection: {
     width: '40%',
-    backgroundColor: '#e0e0e2', // Set background color to #e0e0e2
+    backgroundColor: '#e0e0e2',
     justifyContent: 'center',
+    alignItems: 'center', // Center the image within its container
+    backgroundColor:"white"
   },
   productDetailSection: {
     width: '60%',
     padding: 10,
   },
   productImg: {
-    height: 150,
-    width: '100%',
-    resizeMode: 'contain',
-  },
-  sponsored: {
-    fontSize: 11,
-    color: 'grey',
-    marginBottom: 5,
+    width: 100,
+    height: 100,
+    marginBottom: 10,
+    borderRadius: 5, // Ensure the entire image fits within its container
   },
   productName: {
-    fontSize: 12,
-    color: 'black',
-    lineHeight: 18,
+    fontWeight: "bold",
+    fontSize: 18,
+    marginBottom: 5,
+    color: '#1d3557'
   },
   row: {
     flexDirection: 'row',
@@ -213,10 +253,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
   },
-  cartButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
+  iconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  cartIcon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  wishlistIcon: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalContainer: {
     flex: 1,
@@ -250,6 +299,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-})
+  button: {
+    backgroundColor: '#506afa',
+    padding: 10,
+    borderRadius: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    marginLeft: 5,
+  },
+});
 
 export default FishEcomScreen;

@@ -65,7 +65,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button, RadioButton, TextInput } from "react-native-paper";
 // import { firebase } from "../config";
-// import Signup from "./signup";
+import Signup from "./signup";
 // import { CounsellorDashboard, StudentDashboard } from "./student-dashboard";
 
 const Login = ({ navigation }) => {

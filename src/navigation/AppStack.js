@@ -9,7 +9,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import MessagesScreen from '../screens/MessagesScreen';
 import MomentsScreen from '../screens/MomentsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-
+import VideoPicker from '../screens/VideoPicker'
 import TabNavigator from './TabNavigator';
 
 const Drawer = createDrawerNavigator();
@@ -20,7 +20,7 @@ const AuthStack = () => {
       drawerContent={props => <CustomDrawer {...props} />}
       screenOptions={{
         headerShown: false,
-        drawerActiveBackgroundColor: '#aa18ea',
+        drawerActiveBackgroundColor: '#1d3557',
         drawerActiveTintColor: '#fff',
         drawerInactiveTintColor: '#333',
         drawerLabelStyle: {
@@ -71,6 +71,15 @@ const AuthStack = () => {
         options={{
           drawerIcon: ({color}) => (
             <Ionicons name="settings-outline" size={22} color={color} />
+          ),
+        }}
+      />
+        <Drawer.Screen
+        name="VideoPicker"
+        component={VideoPicker}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="chatbox-ellipses-outline" size={22} color={color} />
           ),
         }}
       />

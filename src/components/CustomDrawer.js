@@ -21,7 +21,7 @@ const CustomDrawer = props => {
         {...props}
         contentContainerStyle={{backgroundColor: '#1d3557'}}>
         <ImageBackground
-          source={require('../assets/images/menu-bg.jpeg')}
+          source={require('../assets/images/bluebg.jpg')}
           style={{padding: 20}}>
           <Image
             source={require('../assets/images/user-profile.jpg')}
@@ -34,12 +34,9 @@ const CustomDrawer = props => {
               fontFamily: 'Roboto-Medium',
               marginBottom: 5,
             }}>
-            John Doe
+          Rutuja Hujare
           </Text>
-          <View style={{flexDirection: 'row'}}>
-          
-            <FontAwesome5 name="coins" size={14} color="#fff" />
-          </View>
+         
         </ImageBackground>
         <View style={{flex: 1, backgroundColor: '#fff', paddingTop: 10}}>
           <DrawerItemList {...props}  />
