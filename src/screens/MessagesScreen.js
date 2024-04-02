@@ -1,335 +1,67 @@
-// import React, { useState } from 'react';
-// import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
-// import { StyleSheet } from 'react-native';
-// import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-// const windowWidth = Dimensions.get('window').width;
-
-// const FishExperts = [
-//   {
-//     id: 1,
-//     name: 'John Doe',
-//     expertise: 'Marine Biologist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '123-456-7890',
-//     rating: 4.5,
-//     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
-//     location: 'New York, USA',
-//     experience: '8 years'
-//   },
-//   {
-//     id: 2,
-//     name: 'Jane Smith',
-//     expertise: 'Aquaculture Specialist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '987-654-3210',
-//     rating: 4.8,
-//     details: 'Sed eget metus vehicula, convallis metus ut, varius metus. Fusce id fringilla est. Nulla sollicitudin sapien a risus fermentum, a pulvinar ipsum feugiat. Proin nec dapibus lectus.',
-//     location: 'Los Angeles, USA',
-//     experience: '10 years'
-//   },
-//   {
-//     id: 1,
-//     name: 'John Doe',
-//     expertise: 'Marine Biologist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '123-456-7890',
-//     rating: 4.5,
-//     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
-//     location: 'New York, USA',
-//     experience: '8 years'
-//   },
-//   {
-//     id: 2,
-//     name: 'Jane Smith',
-//     expertise: 'Aquaculture Specialist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '987-654-3210',
-//     rating: 4.8,
-//     details: 'Sed eget metus vehicula, convallis metus ut, varius metus. Fusce id fringilla est. Nulla sollicitudin sapien a risus fermentum, a pulvinar ipsum feugiat. Proin nec dapibus lectus.',
-//     location: 'Los Angeles, USA',
-//     experience: '10 years'
-//   },
-//   {
-//     id: 1,
-//     name: 'John Doe',
-//     expertise: 'Marine Biologist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '123-456-7890',
-//     rating: 4.5,
-//     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
-//     location: 'New York, USA',
-//     experience: '8 years'
-//   },
-//   {
-//     id: 2,
-//     name: 'Jane Smith',
-//     expertise: 'Aquaculture Specialist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '987-654-3210',
-//     rating: 4.8,
-//     details: 'Sed eget metus vehicula, convallis metus ut, varius metus. Fusce id fringilla est. Nulla sollicitudin sapien a risus fermentum, a pulvinar ipsum feugiat. Proin nec dapibus lectus.',
-//     location: 'Los Angeles, USA',
-//     experience: '10 years'
-//   },
-//   {
-//     id: 1,
-//     name: 'John Doe',
-//     expertise: 'Marine Biologist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '123-456-7890',
-//     rating: 4.5,
-//     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
-//     location: 'New York, USA',
-//     experience: '8 years'
-//   },
-//   {
-//     id: 2,
-//     name: 'Jane Smith',
-//     expertise: 'Aquaculture Specialist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '987-654-3210',
-//     rating: 4.8,
-//     details: 'Sed eget metus vehicula, convallis metus ut, varius metus. Fusce id fringilla est. Nulla sollicitudin sapien a risus fermentum, a pulvinar ipsum feugiat. Proin nec dapibus lectus.',
-//     location: 'Los Angeles, USA',
-//     experience: '10 years'
-//   },
-//   {
-//     id: 1,
-//     name: 'John Doe',
-//     expertise: 'Marine Biologist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '123-456-7890',
-//     rating: 4.5,
-//     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
-//     location: 'New York, USA',
-//     experience: '8 years'
-//   },
-//   {
-//     id: 2,
-//     name: 'Jane Smith',
-//     expertise: 'Aquaculture Specialist',
-//     image: require('../../src/assets/Expert/expert1.jpg'),
-//     phone: '987-654-3210',
-//     rating: 4.8,
-//     details: 'Sed eget metus vehicula, convallis metus ut, varius metus. Fusce id fringilla est. Nulla sollicitudin sapien a risus fermentum, a pulvinar ipsum feugiat. Proin nec dapibus lectus.',
-//     location: 'Los Angeles, USA',
-//     experience: '10 years'
-//   },
-// ];
-
-// const RatingStars = ({ rating }) => {
-//   const stars = [];
-//   for (let i = 1; i <= 5; i++) {
-//     stars.push(
-//       <MaterialCommunityIcons
-//         key={i}
-//         name={i <= rating ? 'star' : 'star-outline'}
-//         size={24}
-//         color="#FFD700"
-//       />
-//     );
-//   }
-//   return <View style={styles.ratingContainer}>{stars}</View>;
-// };
-
-// const ExpertCard = ({ expert, onPress }) => {
-//   const [expanded, setExpanded] = useState(false);
-
-//   return (
-//     <TouchableOpacity onPress={() => onPress(expert)}>
-//       <View style={styles.card}>
-//         <Image source={expert.image} style={styles.image} />
-//         <Text style={styles.name}>{expert.name}</Text>
-//         <Text style={styles.expertise}>{expert.expertise}</Text>
-//         <Text style={styles.location}>Location: {expert.location}</Text>
-//         <Text style={styles.experience}>Years of Experience: {expert.experience}</Text>
-//         {expanded ? (
-//           <>
-//             <Text style={styles.details}>{expert.details}</Text>
-//             <TouchableOpacity onPress={() => setExpanded(false)}>
-//               <Text style={styles.readLess}>Read Less</Text>
-//             </TouchableOpacity>
-//           </>
-//         ) : (
-//           <TouchableOpacity onPress={() => setExpanded(true)}>
-//             <Text style={styles.readMore}>Read More</Text>
-//           </TouchableOpacity>
-//         )}
-//         <View style={styles.ratingContainer}>
-//           <RatingStars rating={expert.rating} />
-//           <Text style={styles.ratingText}>{expert.rating.toFixed(1)}</Text>
-//         </View>
-//         <Text style={styles.phone}>Phone: {expert.phone}</Text>
-//       </View>
-//     </TouchableOpacity>
-//   );
-// };
-
-// export default function MessagesScreen() {
-//   const handleCardPress = (expert) => {
-//     // Implement navigation logic here
-//   };
-
-//   return (
-//     <View style={styles.container}>
-//       <View style={styles.headingContainer}>
-//         <Text style={styles.heading}>Fish Experts</Text>
-//       </View>
-//       <ScrollView contentContainerStyle={styles.scrollView}>
-//         {FishExperts.map(expert => (
-//           <ExpertCard key={expert.id} expert={expert} onPress={handleCardPress} />
-//         ))}
-//       </ScrollView>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#f5f5f5',
-//     paddingHorizontal: 10,
-//   },
-//   headingContainer: {
-//     paddingTop: 50,
-//     paddingBottom: 20,
-//     alignItems: 'center',
-//   },
-//   heading: {
-//     fontSize: 24,
-//     fontWeight: 'bold',
-//     textAlign: 'center',
-//   },
-//   scrollView: {
-//     flexGrow: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center', // Add valid value here
-//   },
-//   card: {
-//     backgroundColor: '#fff',
-//     borderRadius: 10,
-//     padding: 20,
-//     marginBottom: 20,
-//     width: windowWidth - 40,
-//     shadowColor: '#000',
-//     shadowOffset: {
-//       width: 0,
-//       height: 2,
-//     },
-//     shadowOpacity: 0.25,
-//     shadowRadius: 3.84,
-//     elevation: 5,
-//   },
-//   image: {
-//     width: '100%',
-//     height: 200,
-//     borderRadius: 10,
-//     marginBottom: 10,
-//   },
-//   name: {
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//     marginBottom: 5,
-//     color: '#333',
-//   },
-//   expertise: {
-//     fontSize: 16,
-//     color: '#666',
-//     marginBottom: 5,
-//   },
-//   location: {
-//     fontSize: 14,
-//     color: '#666',
-//     marginBottom: 5,
-//   },
-//   experience: {
-//     fontSize: 14,
-//     color: '#666',
-//     marginBottom: 10,
-//   },
-//   details: {
-//     fontSize: 14,
-//     color: '#333',
-//     marginBottom: 10,
-//   },
-//   readMore: {
-//     color: 'blue',
-//     textDecorationLine: 'underline',
-//     marginBottom: 10,
-//   },
-//   readLess: {
-//     color: 'blue',
-//     textDecorationLine: 'underline',
-//     marginTop: 10,
-//     marginBottom: 10,
-//   },
-//   ratingContainer: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//   },
-//   ratingText: {
-//     marginLeft: 5,
-//     fontSize: 16,
-//     color: '#666',
-//   },
-//   phone: {
-//     fontSize: 16,
-//     color: '#666',
-//   },
-// });
-
 import React, { useState } from 'react';
-import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Modal, TextInput, Button } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Calendar } from 'react-native-calendars';
+
 
 const windowWidth = Dimensions.get('window').width;
 
 const FishExperts = [
   {
     id: 1,
-    name: 'John Doe',
-    expertise: 'Marine Biologist',
+    name: 'Dr. Rajesh Sharma',
+    expertise: 'Freshwater Fish Biology',
     image: require('../../src/assets/Expert/expert1.jpg'),
-    phone: '123-456-7890',
+    phone: '+91 9876585462',
     rating: 4.5,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
-    location: 'New York, USA',
+    location: 'Bangalore, India',
+    experience: '15 years'
+  },
+  {
+    id: 1,
+    name: 'Dr. Priya Singh',
+    expertise: 'Aquaculture Management',
+    image: require('../../src/assets/Expert/expert2.jpg'),
+    phone: '+91 8765421563',
+    rating: 4,
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
+    location: 'Chennai, India',
+    experience: '12 years'
+  },
+  {
+    id: 1,
+    name: 'Prof. Amit Patel',
+    expertise: 'Marine Ecology',
+    image: require('../../src/assets/Expert/expert3.jpg'),
+    phone: ' +91 7890198561',
+    rating: 4.1,
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
+    location: 'Mumbai, India',
+    experience: '20 years'
+  },
+  {
+    id: 1,
+    name: 'Dr. Neha Gupta',
+    expertise: ' Fish Pathology',
+    image: require('../../src/assets/Expert/expert4.jpg'),
+    phone: '+91 98765XXXXX',
+    rating: 4.3,
+    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
+    location: 'Kolkata, India',
     experience: '8 years'
   },
   {
     id: 1,
-    name: 'John Doe',
-    expertise: 'Marine Biologist',
-    image: require('../../src/assets/Expert/expert1.jpg'),
-    phone: '123-456-7890',
-    rating: 4.5,
+    name: 'Dr. Sanjay Kumar',
+    expertise: ' Fisheries Economics',
+    image: require('../../src/assets/Expert/expert5.jpg'),
+    phone: '+91 7548265954',
+    rating: 3.9,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
-    location: 'New York, USA',
-    experience: '8 years'
-  },
-  {
-    id: 1,
-    name: 'John Doe',
-    expertise: 'Marine Biologist',
-    image: require('../../src/assets/Expert/expert1.jpg'),
-    phone: '123-456-7890',
-    rating: 4.5,
-    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
-    location: 'New York, USA',
-    experience: '8 years'
-  },
-  {
-    id: 1,
-    name: 'John Doe',
-    expertise: 'Marine Biologist',
-    image: require('../../src/assets/Expert/expert1.jpg'),
-    phone: '123-456-7890',
-    rating: 4.5,
-    details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
-    location: 'New York, USA',
-    experience: '8 years'
+    location: 'Hyderabad, India',
+    experience: '10 years'
   },
 ];
 
@@ -348,8 +80,24 @@ const RatingStars = ({ rating }) => {
   return <View style={styles.ratingContainer}>{stars}</View>;
 };
 
-const ExpertCard = ({ expert, onPress }) => {
+const ExpertCard = ({ expert, onPress , selectedDate, setSelectedDate}) => {
   const [expanded, setExpanded] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [isNameFocused, setIsNameFocused] = useState(false);
+
+  const onGetHelp = () => {
+    setModalVisible(true);
+  };
+
+  const handleBookAppointment = () => {
+    // Logic for booking appointment
+    console.log('Appointment booked');
+    // You can add your booking appointment logic here
+    // For now, let's just close the modal when the appointment is booked
+    setModalVisible(false);
+  };
 
   return (
     <TouchableOpacity onPress={() => onPress(expert)}>
@@ -361,24 +109,81 @@ const ExpertCard = ({ expert, onPress }) => {
           <View style={styles.detailsContainer}>
             <Text style={styles.name}>{expert.name}</Text>
             <Text style={styles.expertise}>{expert.expertise}</Text>
-            <Text style={styles.location}>Location: {expert.location}</Text>
+            <View style={styles.locationContainer}>
+              <MaterialCommunityIcons name="map-marker" size={16} color="#666" />
+              <Text style={styles.locationText}>{expert.location}</Text>
+            </View>
             <Text style={styles.experience}>Experience: {expert.experience}</Text>
             {expanded && (
               <Text style={styles.details}>{expert.details}</Text>
             )}
           </View>
         </View>
-        <View style={styles.ratingContainer}>
-          <RatingStars rating={expert.rating} />
-          <Text style={styles.ratingText}>{expert.rating.toFixed(1)}</Text>
+        <View style={styles.actionsContainer}>
+          <TouchableOpacity style={styles.getHelpButton} onPress={() => onGetHelp(expert)}>
+            <Text style={styles.getHelpButtonText}>Get Help</Text>
+          </TouchableOpacity>
+
+          {/* <Text style={styles.phone}>Phone: {expert.phone}</Text> */}
+          <View style={styles.ratingContainer}>
+            <RatingStars rating={expert.rating} />
+            <Text style={styles.ratingText}>{expert.rating.toFixed(1)}</Text>
+          </View>
         </View>
-        <Text style={styles.phone}>Phone: {expert.phone}</Text>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <TextInput
+                style={[styles.input, isNameFocused ? styles.inputFocused : null]}
+                placeholder="Enter your name"
+                value={name}
+                onChangeText={setName}
+                onFocus={() => setIsNameFocused(true)}
+                onBlur={() => setIsNameFocused(false)}
+              />
+              <TextInput
+                style={[styles.input, isNameFocused ? styles.inputFocused : null]}
+                placeholder="Enter your email"
+                value={email}
+                onChangeText={setEmail}
+                onFocus={() => setIsNameFocused(true)}
+                onBlur={() => setIsNameFocused(false)}
+              />
+              <Calendar
+                onDayPress={(day) => setSelectedDate(day.dateString)}
+                markedDates={{
+                  [selectedDate]: { selected: true, disableTouchEvent: true, selectedColor: '#1c3559', selectedTextColor: 'white' }
+                }}
+              />
+              <View style={styles.buttonContainer}>
+                <Button title="Book Appointment" onPress={handleBookAppointment} color="#1c3559" />
+              </View>
+              <View style={styles.buttonContainer}>
+                <Button
+                  title="Close"
+                  onPress={() => setModalVisible(!modalVisible)}
+                  style={styles.closeButton}
+                  color="#1c3559"
+                // titleStyle={styles.buttonTitle}
+                />
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity >
   );
 };
 
 export default function MessagesScreen() {
+  const [selectedDate, setSelectedDate] = useState(null)
   const handleCardPress = (expert) => {
     // Implement navigation logic here
   };
@@ -390,7 +195,12 @@ export default function MessagesScreen() {
       </View>
       <ScrollView contentContainerStyle={styles.scrollView}>
         {FishExperts.map(expert => (
-          <ExpertCard key={expert.id} expert={expert} onPress={handleCardPress} />
+          <ExpertCard 
+          key={expert.id} 
+          expert={expert} 
+          onPress={handleCardPress} 
+          selectedDate={selectedDate} 
+          setSelectedDate={setSelectedDate}/>
         ))}
       </ScrollView>
     </View>
@@ -400,7 +210,7 @@ export default function MessagesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#eff8ff',
     paddingHorizontal: 10,
   },
   headingContainer: {
@@ -462,10 +272,15 @@ const styles = StyleSheet.create({
     color: '#666',
     marginBottom: 5,
   },
-  location: {
+  locationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  locationText: {
     fontSize: 14,
     color: '#666',
-    marginBottom: 5,
+    marginLeft: 5,
   },
   experience: {
     fontSize: 14,
@@ -489,6 +304,64 @@ const styles = StyleSheet.create({
   phone: {
     fontSize: 16,
     color: '#666',
+  },
+  getHelpButton: {
+    backgroundColor: '#1c3559',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+  },
+  getHelpButtonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+  actionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: '#eff8ff',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: 'white',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  input: {
+    borderWidth: 2,
+    borderColor: '#1C3559',
+    borderRadius: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 8,
+    marginBottom: 10,
+    width: 250,
+  },
+  inputFocused: {
+    borderColor: 'white',
+  },
+  closeButton: {
+    marginTop: 20,
+    backgroundColor: 'white', // Adjust this value as needed
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10, // Adjust this value as needed
   },
 });
 
