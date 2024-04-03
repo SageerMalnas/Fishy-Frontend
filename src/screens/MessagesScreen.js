@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Modal, TextInput, Button, ImageBackground } from 'react-native';
+import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Modal, TextInput, Button } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Calendar } from 'react-native-calendars';
-import { Navbar } from './Navbar'; // Assuming Navbar.js is in the same directory
-
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -14,7 +12,7 @@ const FishExperts = [
     name: 'Dr. Rajesh Sharma',
     expertise: 'Freshwater Fish Biology',
     image: require('../../src/assets/Expert/expert1.jpg'),
-    phone: '+91 9876585462',
+    phone: ' 9876585462',
     rating: 4.5,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'Bangalore, India',
@@ -25,7 +23,7 @@ const FishExperts = [
     name: 'Dr. Priya Singh',
     expertise: 'Aquaculture Management',
     image: require('../../src/assets/Expert/expert2.jpg'),
-    phone: '+91 8765421563',
+    phone: ' 8765421563',
     rating: 4,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'Chennai, India',
@@ -36,7 +34,7 @@ const FishExperts = [
     name: 'Prof. Amit Patel',
     expertise: 'Marine Ecology',
     image: require('../../src/assets/Expert/expert3.jpg'),
-    phone: ' +91 7890198561',
+    phone: ' 7890198561',
     rating: 4.1,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'Mumbai, India',
@@ -47,18 +45,18 @@ const FishExperts = [
     name: 'Dr. Neha Gupta',
     expertise: ' Fish Pathology',
     image: require('../../src/assets/Expert/expert4.jpg'),
-    phone: '+91 98765XXXXX',
+    phone: ' 9568569845',
     rating: 4.3,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'Kolkata, India',
-    experience: '8 years'
+    experience: 'years'
   },
   {
     id: 1,
     name: 'Dr. Sanjay Kumar',
     expertise: ' Fisheries Economics',
     image: require('../../src/assets/Expert/expert5.jpg'),
-    phone: '+91 7548265954',
+    phone: ' 7548265954',
     rating: 3.9,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'Hyderabad, India',
@@ -68,8 +66,8 @@ const FishExperts = [
     id: 1,
     name: 'Dr. Neha Kapoor',
     expertise: ' Fish Nutrition',
-    image: require('../../src/assets/Expert/expert7.jpg'),
-    phone: '+91 8457965217',
+    image: require('../../src/assets/Expert/expert10.jpg'),
+    phone: ' 8457965217',
     rating: 3.8,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'Jaipur, Rajasthan',
@@ -80,7 +78,7 @@ const FishExperts = [
     name: 'Dr. Vikram Singh',
     expertise: 'Ornamental Fish Breeding',
     image: require('../../src/assets/Expert/expert6.jpg'),
-    phone: '+91 8752257563',
+    phone: ' 8752257563',
     rating: 4.1,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'Bangalore,Karnataka',
@@ -91,7 +89,7 @@ const FishExperts = [
     name: 'Dr. Nisha Patel',
     expertise: ' Fish Genetics',
     image: require('../../src/assets/Expert/expert9.jpg'),
-    phone: ' +91 9992535238',
+    phone: ' 9992535238',
     rating: 4,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: ' Ahmedabad, Gujarat',
@@ -102,7 +100,7 @@ const FishExperts = [
     name: 'Dr. Arjun Singhania',
     expertise: 'Ornamental Fish Breeding and Genetics',
     image: require('../../src/assets/Expert/expert8.jpg'),
-    phone: '+91 8856889846',
+    phone: ' 8856889846',
     rating: 3.9,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'Kolkata, India',
@@ -112,8 +110,8 @@ const FishExperts = [
     id: 1,
     name: 'Dr. Preeti Mishra',
     expertise: ' Fish Reproduction and Hatchery Management',
-    image: require('../../src/assets/Expert/expert10.jpg'),
-    phone: '+91 7777265954',
+    image: require('../../src/assets/Expert/expert7.jpg'),
+    phone: ' 7777265954',
     rating: 4,
     details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada hendrerit diam nec lobortis. Curabitur et massa nec mauris vehicula lacinia nec id justo. Integer eu est ac felis tempor vehicula. Proin aliquam arcu eget justo malesuada lobortis. Quisque rhoncus nulla in efficitur consectetur.',
     location: 'Pune, Maharashtra',
@@ -168,15 +166,20 @@ const ExpertCard = ({ expert, onPress, selectedDate, setSelectedDate }) => {
           <View style={styles.detailsContainer}>
             <Text style={styles.name}>{expert.name}</Text>
             <Text style={styles.expertise}>{expert.expertise}</Text>
-            <View style={styles.locationContainer}>
-              <MaterialCommunityIcons name="map-marker" size={16} color="#666" />
-              <Text style={styles.locationText}>{expert.location}</Text>
-            </View>
             <Text style={styles.experience}>Experience: {expert.experience}</Text>
             {expanded && (
               <Text style={styles.details}>{expert.details}</Text>
             )}
-             
+            <View style={styles.locationContainer}>
+              <MaterialCommunityIcons name="map-marker" size={16} color="#666" />
+              <Text style={styles.locationText}>{expert.location}</Text>
+            </View>
+            <View style={styles.phoneContainer}>
+              <MaterialCommunityIcons name="phone" size={16} color="#666" />
+              <Text style={styles.phone}>{expert.phone}</Text>
+            </View>
+
+
           </View>
         </View>
         <View style={styles.actionsContainer}>
@@ -184,7 +187,6 @@ const ExpertCard = ({ expert, onPress, selectedDate, setSelectedDate }) => {
             <Text style={styles.getHelpButtonText}>Get Help</Text>
           </TouchableOpacity>
 
-          {/* <Text style={styles.phone}>Phone: {expert.phone}</Text> */}
           <View style={styles.ratingContainer}>
             <RatingStars rating={expert.rating} />
             <Text style={styles.ratingText}>{expert.rating.toFixed(1)}</Text>
@@ -272,6 +274,29 @@ export default function MessagesScreen() {
 
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center", // Align items vertically
+          marginBottom: 20,
+          paddingBottom: 10,
+          paddingTop: 40,
+          paddingHorizontal: 20, // Add horizontal padding
+          backgroundColor: "white", // Background color
+          width: "100%", // Ensure the width spans the entire screen
+        }}
+      >
+        <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium", color: "black" }}>
+          Hello Rutuja
+        </Text>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Image
+            source={require("../assets/images/user-profile.jpg")}
+            style={{ width: 45, height: 45, borderRadius: 25 }}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={styles.headingContainer}>
         <Text style={styles.heading}>Fish Experts</Text>
       </View>
@@ -296,7 +321,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   headingContainer: {
-    paddingTop: 50,
+    paddingTop: -10,
     paddingBottom: 20,
     alignItems: 'center',
   },
@@ -466,5 +491,10 @@ const styles = StyleSheet.create({
   dateInputSelected: {
     color: '#000',
   },
+  phoneContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // marginTop: 1,
+  },
+
 });
-// export default MessagesScreen; 
