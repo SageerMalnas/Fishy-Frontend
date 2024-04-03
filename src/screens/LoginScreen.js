@@ -140,6 +140,9 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AppTextInput from './AppTextInput'
+import Loader from './Loader';
+
+
 const LoginScreen = ({ navigation: { navigate } }) => {
   const [focused, setFocused] = useState(false);
   const handleSignIn = () => {

@@ -290,7 +290,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 // Custom component for rendering star ratings
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-  
+
 // const StarRating = ({ rating }) => {
 //   const stars = [];
 //   const maxRating = 5; // Maximum rating
@@ -316,7 +316,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 //   return <View style={{ flexDirection: "row" }}>{stars}</View>;
 // };
 
-const StarRating  = ({ rating }) => {
+const StarRating = ({ rating }) => {
   const stars = [];
   for (let i = 1; i <= 5; i++) {
     stars.push(
@@ -454,7 +454,7 @@ const Shop = ({ navigation }) => {
           borderRadius: 8,
           paddingHorizontal: 10,
           paddingVertical: 8,
-          backgroundColor:"white",
+          backgroundColor: "white",
         }}
       >
         <Feather
@@ -496,24 +496,21 @@ const Shop = ({ navigation }) => {
                   </Text>
                 </View>
                 <View style={styles.ratingContainer}>
-          <StarRating rating={aquarium.rating} />
-          <Text style={styles.ratingText}>{aquarium.rating.toFixed(1)}</Text>
-        </View>
-        
-     
-
+                  <StarRating rating={aquarium.rating} />
+                  <Text style={styles.ratingText}>{aquarium.rating.toFixed(1)}</Text>
+                </View>
                 <Text style={styles.shopInfo}>
-                  <Text style={{fontWeight:"bold"}}>Address: </Text>
+                  <Text style={{ fontWeight: "bold" }}>Address: </Text>
 
                   <Text>{aquarium.address}</Text>
                 </Text>
                 <Text style={styles.shopInfo} >
-                  <Text style= {{fontWeight:"bold"}}>Phone: </Text>
+                  <Text style={{ fontWeight: "bold" }}>Phone: </Text>
 
                   <Text>{aquarium.phoneNumber}</Text>
                 </Text>
                 <View style={styles.shopInfoContainer}>
-                  <Text style={{fontWeight:"bold"}}>
+                  <Text style={{ fontWeight: "bold" }}>
                     Status: {aquarium.isOpen ? "Open" : "Closed"}
                   </Text>
                   <View style={styles.iconContainer}>
@@ -582,7 +579,7 @@ const styles = StyleSheet.create({
   },
   shopInfo: {
     marginBottom: 3,
-    
+
   },
   shopInfoContainer: {
     flexDirection: "row",
