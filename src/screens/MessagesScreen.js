@@ -284,7 +284,7 @@ export default function MessagesScreen() {
           paddingTop: 40,
           paddingHorizontal: 20, // Add horizontal padding
           backgroundColor: "white", // Background color
-          width: "100%", // Ensure the width spans the entire screen
+          width: windowWidth, // Ensure the width spans the entire screen
         }}
       >
         <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium", color: "black" }}>
@@ -318,11 +318,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#eff8ff',
-    paddingHorizontal: 10,
+    width: windowWidth,
   },
   headingContainer: {
-    paddingTop: -10,
-    paddingBottom: 20,
+    // paddingTop: -10,
+    paddingBottom: 15,
     alignItems: 'center',
   },
   heading: {
