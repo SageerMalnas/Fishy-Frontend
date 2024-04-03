@@ -1,56 +1,36 @@
-import React, { useState, useRef, useEffect } from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  ImageBackground,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Animated,
-} from "react-native";
-import Carousel from "react-native-snap-carousel";
-import Feather from "react-native-vector-icons/Feather";
+import React, { useState, useEffect, useRef } from "react";
+import { View, Text, SafeAreaView, ScrollView, StyleSheet, Animated, TouchableOpacity, ImageBackground } from "react-native";
+import { FontAwesome5 } from '@expo/vector-icons'; // Import FontAwesome5 for fish icon
 
-import BannerSlider from "../components/BannerSlider";
-import { windowWidth } from "../utils/Dimensions";
-
-import { freeGames, paidGames, sliderData } from "../model/data";
-import CustomSwitch from "../components/CustomSwitch";
-import ListItem from "../components/ListItem";
-
-export default function HomeScreen({ navigation }) {
-  const [gamesTab, setGamesTab] = useState(1);
-
-  const renderBanner = ({ item, index }) => {
-    return <BannerSlider data={item} />;
-  };
-
-  const onSelectSwitch = (value) => {
-    setGamesTab(value);
-  };
-  const titleAnim = useRef(new Animated.Value(-100)).current;
+const HomeScreen = ({ navigation }) => {
+  const [titleAnimation] = useState(new Animated.Value(-100)); // Initialize animation value
 
   useEffect(() => {
-    Animated.timing(titleAnim, {
+    // Start title animation when component mounts
+    Animated.timing(titleAnimation, {
       toValue: 0,
       duration: 1000,
       useNativeDriver: true,
     }).start();
-  }, [titleAnim]);
+  }, []);
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#f0f8ff", paddingTop: 40 }}>
-      <ScrollView style={{ paddingHorizontal: 20  } } isVerticalScrollBarEnabled ={false}>
+    <ImageBackground
+      source={require("../../assets/h.webp")}
+      style={[styles.background, { width: "100vh", height: "100%" }]}
+      resizeMode="cover"
+    >
+      <SafeAreaView style={styles.container}>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
+            marginTop: 50,
             marginBottom: 20,
-           
+            paddingHorizontal: 20,
           }}
         >
-          <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium", color:"#fff" }}>
+          <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" ,color:"white"}}>
             Hello Rutuja
           </Text>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -61,64 +41,94 @@ export default function HomeScreen({ navigation }) {
             />
           </TouchableOpacity>
         </View>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
 
-        <View style={styles.container}>
-          <Animated.Text
-            style={[styles.title, { transform: [{ translateX: titleAnim }] }]}
-          >
-            Fish Species Identification
-          </Animated.Text>
-          <Text style={styles.subtitle}>and Disease Detection</Text>
+          {/* Title section */}
+          <View style={styles.titleContainer}>
+            <Animated.Text style={[styles.title, { transform: [{ translateX: titleAnimation }] }]}>
+              Is Your Fish Healthy ?
+            </Animated.Text>
+            <Text style={styles.subtitle}>Let's find out </Text>
+          </View>
+
+          {/* Icon and description section */}
+          <View style={styles.infoContainer}>
+            <FontAwesome5 name="fish" size={50} color="#1d3557" style={styles.icon} />
+            <Text style={styles.description}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit
+              voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
+              et quasi architecto beatae vitae dicta sunt explicabo.
+            </Text>
+          </View>
+
+          {/* Action button */}
           <TouchableOpacity
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => navigation.navigate("OpenCamera")}
             style={styles.button}
           >
             <Text style={styles.buttonText}>Let's Get Started</Text>
           </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </ImageBackground>
+
   );
-}
+};
+
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
-    backgroundColor: "#1d3557",
     alignItems: "center",
     justifyContent: "center",
   },
   container: {
+    flex: 1,
+    // backgroundColor: "#f0f8ff", // Light blue background color
+  },
+  scrollViewContent: {
+    flexGrow: 1,
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    paddingVertical: 20,
+  },
+  titleContainer: {
+    
+    alignItems: "center",
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "black",
     marginBottom: 10,
-    textAlign: "center",
+    color:"white",
   },
   subtitle: {
     fontSize: 18,
-    color: "black",
-    marginBottom: 30,
+    color:"white",
+    // color: "#1d3557",
+  },
+  infoContainer: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  icon: {
+    marginBottom: 10,
+  },
+  description: {
     textAlign: "center",
+    paddingHorizontal: 20,
+    color: "#1d3557",
   },
   button: {
     backgroundColor: "#1d3557",
-    padding: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
     borderRadius: 8,
   },
   buttonText: {
     color: "white",
     fontSize: 16,
-    textAlign: "center",
     fontWeight: "bold",
   },
-  logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 10,
-  },
 });
+
+export default HomeScreen;
