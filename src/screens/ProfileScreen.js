@@ -5,11 +5,11 @@ import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 const ProfilePage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [gender, setGender] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [city, setCity] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [passwordModalVisible, setPasswordModalVisible] = useState(false);
 
   const handleSubmit = () => {
     // Handle submitting the form data (e.g., send to server)
@@ -24,12 +24,19 @@ const ProfilePage = () => {
     setModalVisible(false);
   };
 
+  const handleChangePassword = () => {
+    // Handle changing password here
+    console.log('Changing password...');
+    setPasswordModalVisible(true); // Open password modal
+  };
+
   return (
     <View style={styles.container}>
+      <Text style={styles.heading}>Edit Profile</Text>
       <TouchableOpacity onPress={handleImageClick} style={styles.imageContainer}>
         <MaterialCommunityIcons name="account-circle" size={150} color="#1c3559" />
       </TouchableOpacity>
-      
+
       <Modal
         animationType="slide"
         transparent={true}
@@ -71,15 +78,6 @@ const ProfilePage = () => {
           onChangeText={setLastName}
         />
       </View>
-      {/* <View style={styles.inputWithIcon}>
-        <MaterialCommunityIcons name="gender-male-female" size={24} color="#1c3559" style={styles.icon} />
-        <TextInput
-          style={styles.input}
-          placeholder="Gender"
-          value={gender}
-          onChangeText={setGender}
-        />
-      </View> */}
       <View style={styles.inputWithIcon}>
         <AntDesign name="mail" size={24} color="#1c3559" style={styles.icon} />
         <TextInput
@@ -108,8 +106,40 @@ const ProfilePage = () => {
         />
       </View>
       <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
-        <Text style={styles.submitButtonText}>Submit</Text>
+        <Text style={styles.submitButtonText}>Save Changes</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={handleChangePassword} style={styles.changePasswordButton}>
+        <Text style={styles.changePasswordButtonText}>Change Password</Text>
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={passwordModalVisible}
+        onRequestClose={() => setPasswordModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalHeading}>Change Password</Text>
+            {/* Input fields for current and new password */}
+            <TextInput
+              style={styles.input}
+              placeholder="Current Password"
+              secureTextEntry={true}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="New Password"
+              secureTextEntry={true}
+            />
+            <TouchableOpacity onPress={() => {}} style={styles.option}>
+              <Text style={styles.optionText}>Change Password</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setPasswordModalVisible(false)} style={styles.option}>
+              <Text style={styles.optionText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -191,6 +221,14 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
+heading: {
+  fontSize: 30,
+  fontWeight: 'bold',
+  marginBottom: 30,
+},
+changePasswordButtonText:{
+  paddingTop: 10,
+}
 });
 
 export default ProfilePage;
