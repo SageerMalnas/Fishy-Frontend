@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, Modal, Text } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity, Modal, Text , Image} from 'react-native';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const ProfilePage = () => {
@@ -10,15 +10,20 @@ const ProfilePage = () => {
   const [city, setCity] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [passwordModalVisible, setPasswordModalVisible] = useState(false);
+  const [isPasswordModalVisible, setIsPasswordModalVisible] = useState(false);
+  const [profileImage, setProfileImage] = useState("../../src/assets/images/user-profile.jpg");
 
   const handleSubmit = () => {
     // Handle submitting the form data (e.g., send to server)
-    console.log('Form data:', { firstName, lastName, gender, email, phoneNumber, city });
+    console.log('Form data:', { firstName, lastName, email, phoneNumber, city });
   };
 
-  const handleImageClick = () => {
+  const handleImageClick = (imageUrl) => {
     setModalVisible(true);
+    setProfileImage(imageUrl); // Assuming you have a state variable for profile image
   };
+  
+
 
   const closeModal = () => {
     setModalVisible(false);
@@ -33,9 +38,15 @@ const ProfilePage = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Edit Profile</Text>
-      <TouchableOpacity onPress={handleImageClick} style={styles.imageContainer}>
-        <MaterialCommunityIcons name="account-circle" size={150} color="#1c3559" />
+      <TouchableOpacity onPress={() => handleImageClick("../../src/assets/images/user-profile.jpg")} style={styles.imageContainer}>
+      <Image
+          source={{ uri: "../../src/assets/images/user-profile.jpg" }}
+          style={styles.profileImage}
+        >
+          <AntDesign name="camera" size={24} color="#fff" style={styles.cameraIcon} />
+        </Image>
       </TouchableOpacity>
+
 
       <Modal
         animationType="slide"
@@ -64,7 +75,7 @@ const ProfilePage = () => {
         <AntDesign name="user" size={24} color="#1c3559" style={styles.icon} />
         <TextInput
           style={styles.input}
-          placeholder="First Name"
+          placeholder="Name"
           value={firstName}
           onChangeText={setFirstName}
         />
@@ -73,7 +84,7 @@ const ProfilePage = () => {
         <AntDesign name="user" size={24} color="#1c3559" style={styles.icon} />
         <TextInput
           style={styles.input}
-          placeholder="Last Name"
+          placeholder="Username"
           value={lastName}
           onChangeText={setLastName}
         />
@@ -108,7 +119,10 @@ const ProfilePage = () => {
       <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
         <Text style={styles.submitButtonText}>Save Changes</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleChangePassword} style={styles.changePasswordButton}>
+      <TouchableOpacity
+        onPress={handleChangePassword}
+        style={[styles.changePasswordButton, isPasswordModalVisible ? styles.activeChangePasswordButton : null]}
+      >
         <Text style={styles.changePasswordButtonText}>Change Password</Text>
       </TouchableOpacity>
       <Modal
@@ -131,7 +145,7 @@ const ProfilePage = () => {
               placeholder="New Password"
               secureTextEntry={true}
             />
-            <TouchableOpacity onPress={() => {}} style={styles.option}>
+            <TouchableOpacity onPress={() => { }} style={styles.option}>
               <Text style={styles.optionText}>Change Password</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setPasswordModalVisible(false)} style={styles.option}>
@@ -187,7 +201,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
@@ -221,14 +235,22 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
-heading: {
-  fontSize: 30,
-  fontWeight: 'bold',
-  marginBottom: 30,
-},
-changePasswordButtonText:{
-  paddingTop: 10,
-}
+  heading: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 30,
+  },
+  
+  activeChangePasswordButton: {
+    color: 'red', 
+    fontSize: 20,
+  },
+  changePasswordButtonText: {
+    color: '#1c3559', // Change color to whatever you prefer
+    fontSize: 16,
+    fontWeight: 'bold',
+    paddingTop: 10,
+  },
 });
 
 export default ProfilePage;
