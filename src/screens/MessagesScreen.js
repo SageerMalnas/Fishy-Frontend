@@ -267,11 +267,11 @@ const ExpertCard = ({ expert, onPress, selectedDate, setSelectedDate }) => {
   );
 };
 
-export default function MessagesScreen() {
+export default function MessagesScreen({navigation}) {
   const [selectedDate, setSelectedDate] = useState(null)
 
   const handleCardPress = (expert) => {
-    // Implement navigation logic here
+  
   };
 
   return (

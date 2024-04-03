@@ -14,7 +14,7 @@ const ProfilePage = () => {
   const [profileImage, setProfileImage] = useState("../../src/assets/images/user-profile.jpg");
 
   const handleSubmit = () => {
-    // Handle submitting the form data (e.g., send to server)
+   
     console.log('Form data:', { firstName, lastName, email, phoneNumber, city });
   };
 
