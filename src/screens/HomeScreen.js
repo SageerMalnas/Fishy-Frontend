@@ -47,10 +47,9 @@ export default function HomeScreen({ navigation }) {
             flexDirection: "row",
             justifyContent: "space-between",
             marginBottom: 20,
-           
           }}
         >
-          <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium", color:"#fff" }}>
+          <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium"}}>
             Hello Rutuja
           </Text>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
