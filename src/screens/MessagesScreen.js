@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Modal, TextInput, Button } from 'react-native';
+import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Modal, TextInput, Button, ImageBackground } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Calendar } from 'react-native-calendars';
@@ -157,7 +157,9 @@ const ExpertCard = ({ expert, onPress, selectedDate, setSelectedDate }) => {
   };
 
   return (
+    
     <TouchableOpacity onPress={() => onPress(expert)}>
+     
       <View style={styles.card}>
         <View style={styles.cardContent}>
           <View style={styles.imageContainer}>

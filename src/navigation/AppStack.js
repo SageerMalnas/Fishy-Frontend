@@ -11,7 +11,7 @@ import MomentsScreen from '../screens/MomentsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import VideoPicker from '../screens/VideoPicker'
 import TabNavigator from './TabNavigator';
-
+import Shop from '../screens/Shop';
 const Drawer = createDrawerNavigator();
 
 const AuthStack = () => {
@@ -38,6 +38,36 @@ const AuthStack = () => {
           ),
         }}
       />
+        
+      <Drawer.Screen
+        name="Shop"
+        component={Shop}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="location-outline" size={22} color={color} />
+          ),
+        }}
+      />
+      
+      
+      <Drawer.Screen
+        name="Experts"
+        component={MessagesScreen}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="ribbon-outline" size={22} color={color} />
+          ),
+        }}
+      />
+        <Drawer.Screen
+        name="VideoPicker"
+        component={VideoPicker}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="videocam-outline" size={22} color={color} />
+          ),
+        }}
+      />
       <Drawer.Screen
         name="Profile"
         component={ProfileScreen}
@@ -47,16 +77,7 @@ const AuthStack = () => {
           ),
         }}
       />
-      <Drawer.Screen
-        name="Messages"
-        component={MessagesScreen}
-        options={{
-          drawerIcon: ({color}) => (
-            <Ionicons name="chatbox-ellipses-outline" size={22} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Moments"
         component={MomentsScreen}
         options={{
@@ -64,7 +85,7 @@ const AuthStack = () => {
             <Ionicons name="timer-outline" size={22} color={color} />
           ),
         }}
-      />
+      /> */}
       <Drawer.Screen
         name="Settings"
         component={SettingsScreen}
@@ -74,15 +95,7 @@ const AuthStack = () => {
           ),
         }}
       />
-        <Drawer.Screen
-        name="VideoPicker"
-        component={VideoPicker}
-        options={{
-          drawerIcon: ({color}) => (
-            <Ionicons name="chatbox-ellipses-outline" size={22} color={color} />
-          ),
-        }}
-      />
+    
     </Drawer.Navigator>
   );
 };
