@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Modal, TextInput, Button } from 'react-native';
+import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Modal, TextInput, Button, ImageBackground } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Calendar } from 'react-native-calendars';
+import { Navbar } from './Navbar'; // Assuming Navbar.js is in the same directory
+
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -465,3 +467,4 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 });
+// export default MessagesScreen; 
