@@ -1,26 +1,13 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  ImageBackground,
-  TouchableOpacity,
-  StyleSheet,
-  Animated,
-  Dimensions, // Import Dimensions from 'react-native'
-} from "react-native";
-import { windowWidth, windowHeight } from "../utils/Dimensions";
+import React, { useState, useEffect, useRef } from "react";
+import { View, Text, SafeAreaView, ScrollView, StyleSheet, Animated, TouchableOpacity, ImageBackground } from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons'; // Import FontAwesome5 for fish icon
 
-const { width, height } = Dimensions.get('window');
-
-export default function HomeScreen({ navigation }) {
-  const [gamesTab, setGamesTab] = useState(1);
-  const titleAnim = useState(new Animated.Value(-100))[0]; // Change to useState hook
+const HomeScreen = ({ navigation }) => {
+  const [titleAnimation] = useState(new Animated.Value(-100)); // Initialize animation value
 
   useEffect(() => {
-    Animated.timing(titleAnim, {
+    // Start title animation when component mounts
+    Animated.timing(titleAnimation, {
       toValue: 0,
       duration: 1000,
       useNativeDriver: true,
@@ -29,52 +16,64 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <ImageBackground
-      source={require("../../assets/unnamed.png")}
-      style={[styles.background, { width: "100%", height:"100%" }]} // Adjust the width and height
+      source={require("../../assets/h.webp")}
+      style={[styles.background, { width: "100vh", height: "100%" }]}
       resizeMode="cover"
     >
-      <SafeAreaView style={{ flex: 1, backgroundColor: "transparent", paddingTop: 40 }}>
-        <ScrollView style={{ paddingHorizontal: 20 }} isVerticalScrollBarEnabled={false}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 20,
-            }}
-          >
-            <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" }}>
-              Hello Rutuja
-            </Text>
-            <TouchableOpacity onPress={() => navigation.openDrawer()}>
-              <ImageBackground
-                source={require("../assets/images/user-profile.jpg")}
-                style={{ width: 45, height: 45 }}
-                imageStyle={{ borderRadius: 25 }}
-              />
-            </TouchableOpacity>
+      <SafeAreaView style={styles.container}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginTop: 50,
+            marginBottom: 20,
+            paddingHorizontal: 20,
+          }}
+        >
+          <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" ,color:"white"}}>
+            Hello Rutuja
+          </Text>
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <ImageBackground
+              source={require("../assets/images/user-profile.jpg")}
+              style={{ width: 45, height: 45 }}
+              imageStyle={{ borderRadius: 25 }}
+            />
+          </TouchableOpacity>
+        </View>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+
+          {/* Title section */}
+          <View style={styles.titleContainer}>
+            <Animated.Text style={[styles.title, { transform: [{ translateX: titleAnimation }] }]}>
+              Is Your Fish Healthy ?
+            </Animated.Text>
+            <Text style={styles.subtitle}>Let's find out </Text>
           </View>
 
-          <View style={styles.container}>
-            <Animated.Text
-              style={[styles.title, { transform: [{ translateX: titleAnim }] }]}
-            >
-              Fish Species Identification
-            </Animated.Text>
-            <Text style={styles.subtitle}>and Disease Detection</Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("OpenCamera")}
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>Let's Get Started</Text>
-            </TouchableOpacity>
-            {/* Add fish icon */}
-            <FontAwesome5 name="fish" size={50} color="blue" style={styles.icon} />
+          {/* Icon and description section */}
+          <View style={styles.infoContainer}>
+            <FontAwesome5 name="fish" size={50} color="#1d3557" style={styles.icon} />
+            <Text style={styles.description}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit
+              voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
+              et quasi architecto beatae vitae dicta sunt explicabo.
+            </Text>
           </View>
+
+          {/* Action button */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate("OpenCamera")}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Let's Get Started</Text>
+          </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     </ImageBackground>
+
   );
-}
+};
 
 const styles = StyleSheet.create({
   background: {
@@ -82,35 +81,54 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
+    flex: 1,
+    // backgroundColor: "#f0f8ff", // Light blue background color
+  },
+  scrollViewContent: {
+    flexGrow: 1,
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    paddingVertical: 20,
+  },
+  titleContainer: {
+    
+    alignItems: "center",
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "black",
     marginBottom: 10,
-    textAlign: "center",
+    color:"white",
   },
   subtitle: {
     fontSize: 18,
-    color: "black",
-    marginBottom: 30,
+    color:"white",
+    // color: "#1d3557",
+  },
+  infoContainer: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  icon: {
+    marginBottom: 10,
+  },
+  description: {
     textAlign: "center",
+    paddingHorizontal: 20,
+    color: "#1d3557",
   },
   button: {
     backgroundColor: "#1d3557",
-    padding: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
     borderRadius: 8,
   },
   buttonText: {
     color: "white",
     fontSize: 16,
-    textAlign: "center",
     fontWeight: "bold",
   },
-  icon: {
-    marginTop: 20,
-  },
 });
+
+export default HomeScreen;
