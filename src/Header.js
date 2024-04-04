@@ -14,7 +14,7 @@ const Header = ({ navigation }) => {
       }}
     >
       <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium", color: "white" }}>
-        Hello Rutuja
+        Hey there 👋🏼
       </Text>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
         <ImageBackground
