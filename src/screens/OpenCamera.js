@@ -168,9 +168,7 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import { COLORS } from '../consts/colors'; // Import the COLORS object from your colors file
-import { FontAwesome5 } from '@expo/vector-icons';
+import * as ImagePicker from "expo-image-picker";// Import the COLORS object from your colors file
 import FormData from "form-data";
 import { COLORS } from '../consts/colors';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -223,7 +221,7 @@ const OpenCamera = ({ navigation }) => {
     });
 
     try {
-      const response = await fetch("http://192.168.119.177:5000/process_image", {
+      const response = await fetch("http://10.10.6.138:5000/process_image", {
         // Modify the above API according to your expo IP
         method: "POST",
         body: formData,
