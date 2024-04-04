@@ -4,7 +4,15 @@ import Prod3 from './Assets/Prod3.jpeg';
 import Prod4 from './Assets/Prod4.jpeg';
 import Prod5 from './Assets/Prod5.jpeg';
 import Prod6 from './Assets/Prod6.webp';
-// import Prod7 from '../assets/prod7.png';
+import Prod7 from './Assets/Prod7.webp';
+import Prod8 from './Assets/Prod8.webp';
+import Prod9 from './Assets/Prod9.webp';
+import Prod10 from './Assets/Prod10.webp';
+import Prod11 from './Assets/Prod11.webp';
+import Prod12 from './Assets/Prod12.jpeg';
+import Prod13 from './Assets/Prod13.jpeg';
+import Prod14 from './Assets/Prod14.jpeg';
+import Prod15 from './Assets/Prod15.jpeg';
 // import Prod8 from '../assets/prod8.png';
 // import Prod9 from '../assets/prod9.png';
 // import Prod10 from '../assets/prod10.png';
@@ -70,5 +78,94 @@ export const ProductData = [
     crossOutText: '₹̶119.̶0̶0̶',
     deliveryBy: 'Thursday, 22 April',
     image: Prod6,
+  },
+  {
+    id: 7,
+    productName: 'PAWWFECT- YOU LOVE, WE PAMPER',
+    rating: 4.5,
+    ratingCount: '3,890',
+    price: '400.00',
+    crossOutText: '₹̶419.̶0̶0̶',
+    deliveryBy: 'Thursday, 23 April',
+    image: Prod7,
+  },
+  {
+    id: 8,
+    productName: 'Petcrux Micro Pellet Fish Food',
+    rating: 4.5,
+    ratingCount: '3,890',
+    price: '300.00',
+    crossOutText: '₹319.̶0̶0̶',
+    deliveryBy: 'Thursday, 23 April',
+    image: Prod8,
+  },
+  {
+    id: 9,
+    productName: 'Aquatic Remedies General Cure Medicine',
+    rating: 4.5,
+    ratingCount: '3,890',
+    price: '100.00',
+    crossOutText: '₹̶119.̶0̶0̶',
+    deliveryBy: 'Thursday, 23 April',
+    image: Prod9,
+  },
+  {
+    id: 10,
+    productName: 'Food Puppies Aquatic',
+    rating: 4.5,
+    ratingCount: '3,890',
+    price: '250.00',
+    crossOutText: '₹̶300.̶0̶0̶',
+    deliveryBy: 'Thursday, 23 April',
+    image: Prod10,
+  }, {
+    id: 11,
+    productName: 'AquaNature Aquarium',
+    rating: 4.5,
+    ratingCount: '3,890',
+    price: '300.00',
+    crossOutText: '₹̶319.̶0̶0̶',
+    deliveryBy: 'Thursday, 23 April',
+    image: Prod11,
+  },
+  {
+    id: 12,
+    productName: 'Tree For Fish Aquarium',
+    rating: 4.5,
+    ratingCount: '3,890',
+    price: '65.00',
+    crossOutText: '₹̶119.̶0̶0̶',
+    deliveryBy: 'Thursday, 23 April',
+    image: Prod12,
+  },
+  {
+    id: 13,
+    productName: 'Fish Food',
+    rating: 4.5,
+    ratingCount: '3,890',
+    price: '100.00',
+    crossOutText: '₹̶119.̶0̶0̶',
+    deliveryBy: 'Thursday, 23 April',
+    image: Prod13,
+  },
+  {
+    id: 14,
+    productName: 'Cichlids Sticks',
+    rating: 4.5,
+    ratingCount: '3,890',
+    price: '140.00',
+    crossOutText: '₹̶149.̶0̶0̶',
+    deliveryBy: 'Thursday, 23 April',
+    image: Prod14,
+  },
+  {
+    id: 15,
+    productName: 'Fish Food',
+    rating: 4.5,
+    ratingCount: '3,890',
+    price: '150.00',
+    crossOutText: '₹̶159.̶0̶0̶',
+    deliveryBy: 'Thursday, 23 April',
+    image: Prod15,
   },
 ];

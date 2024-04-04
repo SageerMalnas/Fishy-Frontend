@@ -62,6 +62,9 @@ const HomeScreen = ({ navigation }) => {
           {/* Title section */}
           <View style={styles.titleContainer}>
             <Animated.Text style={[styles.title, { transform: [{ scale: titleAnimation }] }]}>
+            Discover the Depths
+            </Animated.Text>
+            <Animated.Text style={[styles.subtitle, { transform: [{ scale: subtitleAnimation }] }]}>
               Is Your Fish Healthy ?
             </Animated.Text>
             <Animated.Text style={[styles.subtitle, { transform: [{ scale: subtitleAnimation }] }]}>
@@ -71,7 +74,7 @@ const HomeScreen = ({ navigation }) => {
 
           {/* Icon and description section */}
           <Animated.View style={[styles.infoContainer, { transform: [{ translateX: iconAnimation }] }]}>
-            <FontAwesome5 name="fish" size={50} color="white" style={styles.icon} />
+            {/* <FontAwesome5 name="fish" size={50} color="white" style={styles.icon} /> */}
             <Text style={styles.description}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit
               voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
@@ -86,6 +89,9 @@ const HomeScreen = ({ navigation }) => {
           >
             <Text style={styles.buttonText}>Let's Get Started</Text>
           </TouchableOpacity>
+          <Animated.View style={[styles.infoContainer, { transform: [{ translateX: iconAnimation }] }]}>
+            <FontAwesome5 name="fish" size={55} color="white" style={styles.icon} />
+          </Animated.View>
         </ScrollView>
       </SafeAreaView>
     </ImageBackground>
@@ -132,9 +138,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingHorizontal: 20,
     color: "gray",
+    opacity: 0, 
   },
   button: {
     marginTop:250,
+    marginBottom:20,
     // backgroundColor: "#1d3557",
     backgroundColor:'white',
     paddingVertical: 12,
