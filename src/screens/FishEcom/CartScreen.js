@@ -66,7 +66,7 @@ const CartScreen = ({ route, navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerText}>Hello Rutuja</Text>
+                <Text style={styles.headerText}>Hey there 👋🏼</Text>
                 <TouchableOpacity onPress={() => navigation.openDrawer()}>
                     <ImageBackground
                         source={require("../../assets/images/user-profile.jpg")}
