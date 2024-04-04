@@ -1,14 +1,30 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, SafeAreaView, ScrollView, StyleSheet, Animated, TouchableOpacity, ImageBackground } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, StyleSheet, Animated, TouchableOpacity, Image, ImageBackground } from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons'; // Import FontAwesome5 for fish icon
 
 const HomeScreen = ({ navigation }) => {
-  const [titleAnimation] = useState(new Animated.Value(-100)); // Initialize animation value
+  const [titleAnimation] = useState(new Animated.Value(0)); // Initialize title animation value
+  const [subtitleAnimation] = useState(new Animated.Value(0)); // Initialize subtitle animation value
+  const [iconAnimation] = useState(new Animated.Value(-100)); // Initialize icon animation value
 
   useEffect(() => {
-    // Start title animation when component mounts
+    // Title animation: Zoom in to zoom out
     Animated.timing(titleAnimation, {
-      toValue: 0,
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+
+    // Subtitle animation: Zoom in to zoom out
+    Animated.timing(subtitleAnimation, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+
+    // Icon animation: Move from left to right
+    Animated.timing(iconAnimation, {
+      toValue: 1,
       duration: 1000,
       useNativeDriver: true,
     }).start();
@@ -16,8 +32,8 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
-      source={require("../../assets/h.webp")}
-      style={[styles.background, { width: "100vh", height: "100%" }]}
+      source={require("../../assets/ba.jpg")}
+      style={[styles.background, { width: "100%", height: "100%" }]}
       resizeMode="cover"
     >
       <SafeAreaView style={styles.container}>
@@ -30,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
             paddingHorizontal: 20,
           }}
         >
-          <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" ,color:"white"}}>
+          <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium", color: "white" }}>
             Hello Rutuja
           </Text>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -45,21 +61,23 @@ const HomeScreen = ({ navigation }) => {
 
           {/* Title section */}
           <View style={styles.titleContainer}>
-            <Animated.Text style={[styles.title, { transform: [{ translateX: titleAnimation }] }]}>
+            <Animated.Text style={[styles.title, { transform: [{ scale: titleAnimation }] }]}>
               Is Your Fish Healthy ?
             </Animated.Text>
-            <Text style={styles.subtitle}>Let's find out </Text>
+            <Animated.Text style={[styles.subtitle, { transform: [{ scale: subtitleAnimation }] }]}>
+              Let's find out 😊
+            </Animated.Text>
           </View>
 
           {/* Icon and description section */}
-          <View style={styles.infoContainer}>
-            <FontAwesome5 name="fish" size={50} color="#1d3557" style={styles.icon} />
+          <Animated.View style={[styles.infoContainer, { transform: [{ translateX: iconAnimation }] }]}>
+            <FontAwesome5 name="fish" size={50} color="white" style={styles.icon} />
             <Text style={styles.description}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit
               voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
               et quasi architecto beatae vitae dicta sunt explicabo.
             </Text>
-          </View>
+          </Animated.View>
 
           {/* Action button */}
           <TouchableOpacity
@@ -82,16 +100,14 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    // backgroundColor: "#f0f8ff", // Light blue background color
   },
   scrollViewContent: {
     flexGrow: 1,
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
     paddingVertical: 20,
   },
   titleContainer: {
-    
     alignItems: "center",
     marginBottom: 20,
   },
@@ -99,12 +115,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
-    color:"white",
+    color: "white",
   },
   subtitle: {
     fontSize: 18,
-    color:"white",
-    // color: "#1d3557",
+    color: "white",
   },
   infoContainer: {
     alignItems: "center",
@@ -116,16 +131,18 @@ const styles = StyleSheet.create({
   description: {
     textAlign: "center",
     paddingHorizontal: 20,
-    color: "#1d3557",
+    color: "gray",
   },
   button: {
-    backgroundColor: "#1d3557",
+    marginTop:250,
+    // backgroundColor: "#1d3557",
+    backgroundColor:'white',
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
   },
   buttonText: {
-    color: "white",
+    color: "#1d3557",
     fontSize: 16,
     fontWeight: "bold",
   },
