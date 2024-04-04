@@ -221,7 +221,7 @@ const OpenCamera = ({ navigation }) => {
     });
 
     try {
-      const response = await fetch("http://10.10.6.138:5000/process_image", {
+      const response = await fetch("http://192.168.104.177:5000/process_image", {
         // Modify the above API according to your expo IP
         method: "POST",
         body: formData,
