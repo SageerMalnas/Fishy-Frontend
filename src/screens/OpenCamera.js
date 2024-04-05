@@ -180,6 +180,24 @@ const OpenCamera = ({ navigation }) => {
     species: "Lets find out",
     disease: "Lets find out",
   });
+  const uploadImageToFirebase = async (uri) => {
+    try {
+      const response = await fetch(uri);
+      const blob = await response.blob();
+      const uniqueId = Date.now().toString(); // Generate a unique ID for the image
+      const ref = firebase.storage().ref().child(`Pictures/${uniqueId}`);
+      await ref.put(blob);
+      console.error("Upload Ho gaya bhau");
+      const downloadURL = await ref.getDownloadURL();
+      return downloadURL;
+      
+    } catch (error) {
+      console.error("Error uploading image to Firebase:", error);
+      throw error; // Re-throw the error to handle it in the calling function
+    }
+  };
+  
+    
 
   const openCameraLib = async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -190,16 +208,16 @@ const OpenCamera = ({ navigation }) => {
 
     const result = await ImagePicker.launchCameraAsync();
     if (!result.cancelled && result.assets && result.assets.length > 0) {
-      setImgUrl(result.assets[0].uri);
-      detectImage(result.assets[0].uri);
+      const downloadURL = await uploadImageToFirebase(result.assets[0].uri);
+      setImgUrl(downloadURL);
     }
   };
 
   const openLib = async () => {
     const result = await ImagePicker.launchImageLibraryAsync();
     if (!result.cancelled && result.assets && result.assets.length > 0) {
-      setImgUrl(result.assets[0].uri);
-      detectImage(result.assets[0].uri);
+      const downloadURL = await uploadImageToFirebase(result.assets[0].uri);
+      setImgUrl(downloadURL);
     }
   };
 
