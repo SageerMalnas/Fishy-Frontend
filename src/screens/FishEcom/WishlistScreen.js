@@ -66,7 +66,7 @@ const WishlistScreen = ({ navigation, route }) => {
         }}
       >
         <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" }}>
-          Hello Rutuja
+          Hey there 👋🏼
         </Text>
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <ImageBackground

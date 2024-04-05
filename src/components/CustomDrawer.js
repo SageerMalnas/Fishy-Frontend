@@ -34,7 +34,7 @@ const CustomDrawer = props => {
               fontFamily: 'Roboto-Medium',
               marginBottom: 5,
             }}>
-          Rutuja Hujare
+          Max Olson
           </Text>
          
         </ImageBackground>

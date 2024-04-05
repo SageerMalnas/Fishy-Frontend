@@ -290,7 +290,7 @@ export default function MessagesScreen({navigation}) {
         }}
       >
         <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium", color: "black" }}>
-          Hello Rutuja
+        Hey there 👋🏼
         </Text>
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Image

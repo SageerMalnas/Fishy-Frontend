@@ -177,8 +177,8 @@ import { firebase } from '../../config';
 const OpenCamera = ({ navigation }) => {
   const [imgUrl, setImgUrl] = useState(null);
   const [imageInfo, setImageInfo] = useState({
-    species: "Unknown",
-    disease: "Unknown",
+    species: "Lets find out",
+    disease: "Lets find out",
   });
 
   const openCameraLib = async () => {
@@ -241,7 +241,27 @@ const OpenCamera = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", paddingTop: 40 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#f0f8ff", paddingTop: 40 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: 5,
+          marginTop: 10,
+          paddingHorizontal:20,
+        }}
+      >
+        <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium" }}>
+          Hey there 👋🏼
+        </Text>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <ImageBackground
+            source={require("./../assets/images/user-profile.jpg")}
+            style={{ width: 45, height: 45 }}
+            imageStyle={{ borderRadius: 25 }}
+          />
+        </TouchableOpacity>
+      </View>
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.innerContainer}>
@@ -287,7 +307,7 @@ const OpenCamera = ({ navigation }) => {
           </View>
           <View style={styles.infoContainer}>
             <Text style={styles.infoText}>
-              Species: {imageInfo.species}
+              Specie: {imageInfo.species}
             </Text>
             <Text style={styles.infoText}>
               Disease Status: {imageInfo.disease}

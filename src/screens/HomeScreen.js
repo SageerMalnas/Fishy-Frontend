@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
             justifyContent: "space-between",
             marginTop: 50,
             marginBottom: 20,
-            paddingHorizontal: 20,
+            paddingHorizontal: 10,
           }}
         >
           <Text style={{ fontSize: 24, fontFamily: "Roboto-Medium", color: "white" }}>
@@ -68,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
               Is Your Fish Healthy ?
             </Animated.Text>
             <Animated.Text style={[styles.subtitle, { transform: [{ scale: subtitleAnimation }] }]}>
-              Let's find out 😊
+              Let's find out !
             </Animated.Text>
           </View>
 

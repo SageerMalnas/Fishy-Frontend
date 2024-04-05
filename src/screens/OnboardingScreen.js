@@ -83,8 +83,8 @@ const Welcome = ({ navigation: { navigate } }) => {
           source={require("../../assets/Logo.png")}
         />
         <View style={{ paddingHorizontal: 40, paddingTop: 40 }}>
-          <Text style={{ fontSize: 35, color: "#1F41BB", textAlign: "center" }}>
-            Discover Your Social Platform Here
+          <Text style={{ fontSize: 35, color: "#1d3557", textAlign: "center" }}>
+          Dive Deep: Discover Fish Species & Diseases
           </Text>
 
           <Text
@@ -95,7 +95,7 @@ const Welcome = ({ navigation: { navigate } }) => {
               marginTop: 20,
             }}
           >
-            Explore all the soical role based on your interest
+            {/* Explore all the soical role based on your interest */}
           </Text>
         </View>
         <View
@@ -103,6 +103,7 @@ const Welcome = ({ navigation: { navigate } }) => {
             paddingHorizontal: 20,
             paddingTop: 60,
             flexDirection: "row",
+            justifyContent: 'space-between'
           }}
         >
           <TouchableOpacity
@@ -138,6 +139,7 @@ const Welcome = ({ navigation: { navigate } }) => {
               shadowOffset: { width: 0, height: 10 },
               shadowOpacity: 0.3,
               shadowRadius: 10,
+              backgroundColor: 'white',
             }}
             onPress={() => {
               console.log("login");
